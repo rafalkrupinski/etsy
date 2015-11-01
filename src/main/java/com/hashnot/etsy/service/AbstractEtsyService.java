@@ -1,4 +1,4 @@
-package com.hashnot.etsy.com.hashnot.etsy.service;
+package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.dto.Response;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.hashnot.etsy.com.hashnot.etsy.service;
+package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Listings;
 import com.hashnot.etsy.dto.Image;
@@ -7,7 +7,6 @@ import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 
