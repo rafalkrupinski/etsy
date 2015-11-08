@@ -166,7 +166,7 @@ public class Transaction {
      * The primary listing image for this transaction.
      */
     @JsonProperty("MainImage")
-    private Image mainImage;
+    private ListingImage mainImage;
 
     /**
      * The listing that is associated with this transaction.
@@ -386,11 +386,11 @@ public class Transaction {
         this.buyer = buyer;
     }
 
-    public Image getMainImage() {
+    public ListingImage getMainImage() {
         return mainImage;
     }
 
-    public void setMainImage(Image mainImage) {
+    public void setMainImage(ListingImage mainImage) {
         this.mainImage = mainImage;
     }
 

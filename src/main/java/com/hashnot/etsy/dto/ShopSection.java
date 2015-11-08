@@ -25,11 +25,12 @@ public class ShopSection {
      * The ID of the user who owns this shop section.
      */
     @JsonProperty("user_id")
-    private int user_id;
+    private long userId;
     /**
      * The number of active listings currently in the section.
      */
-    private int active_listing_count;
+    @JsonProperty("active_listing_count")
+    private int activeListingCount;
 
     public long getShopSectionId() {
         return shopSectionId;
@@ -55,19 +56,19 @@ public class ShopSection {
         this.rank = rank;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getActive_listing_count() {
-        return active_listing_count;
+    public int getActiveListingCount() {
+        return activeListingCount;
     }
 
-    public void setActive_listing_count(int active_listing_count) {
-        this.active_listing_count = active_listing_count;
+    public void setActiveListingCount(int activeListingCount) {
+        this.activeListingCount = activeListingCount;
     }
 }

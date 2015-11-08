@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * A class representing an Etsy image.
  */
-public class Image {
+public class ListingImage {
 
     @JsonProperty("listing_image_id")
     private long mListingImageId;
