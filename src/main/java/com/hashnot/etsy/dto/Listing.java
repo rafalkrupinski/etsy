@@ -429,14 +429,6 @@ public class Listing {
         this.materials = materials;
     }
 
-    public void setProcessingMin(int processingMin) {
-        this.processingMin = processingMin;
-    }
-
-    public void setProcessingMax(int processingMax) {
-        this.processingMax = processingMax;
-    }
-
     public void setWhoMade(String whoMade) {
         this.whoMade = whoMade;
     }
