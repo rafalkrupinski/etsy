@@ -2,14 +2,18 @@ package com.hashnot.etsy.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 /**
  * @author Rafał Krupiński
  */
 public class User {
     @JsonProperty("user_id")
     private long userId;
+
     @JsonProperty("login_name")
     private String loginName;
+
     @JsonProperty("primary_email")
     private String email;
     /*
@@ -22,6 +26,9 @@ public class User {
 */
     @JsonProperty("referred_by_user_id")
     private Long referredByUserId;
+
+    @JsonProperty("Shops")
+    private List<Shop>shops;
 
     public long getUserId() {
         return userId;
@@ -53,5 +60,13 @@ public class User {
 
     public void setReferredByUserId(Long referredByUserId) {
         this.referredByUserId = referredByUserId;
+    }
+
+    public List<Shop> getShops() {
+        return shops;
+    }
+
+    public void setShops(List<Shop> shops) {
+        this.shops = shops;
     }
 }

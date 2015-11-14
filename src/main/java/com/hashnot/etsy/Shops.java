@@ -44,8 +44,7 @@ public interface Shops {
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page
-    )throws IOException;
-
+    ) throws IOException;
 
     @GET
     @Path("/shops/{shopId}/receipts")
@@ -58,6 +57,40 @@ public interface Shops {
             @QueryParam("was_shipped") Boolean shipped,
 
             @QueryParam("includes") List<String> includes,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page
+    ) throws IOException;
+
+    /**
+     * Get a Shop Payment Account Ledger
+     */
+    @GET
+    @Path("/shops/{shopId}/ledger/")
+    Response<Ledger> findLedger(@PathParam("shopId") String shopId) throws IOException;
+
+    /**
+     * Get a Shop Payment Account Ledger's Entries
+     */
+    @GET
+    @Path("/shops/{shopId}/ledger/entries")
+    Response<LedgerEntry> findLedgerEntries(
+            @PathParam("shopId") String shopId,
+            @QueryParam("min_created") Date minCreated,
+            @QueryParam("max_created") Date maxCreated,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page
+    ) throws IOException;
+
+    /**
+     * Get a Payment by Shop Receipt ID
+     */
+    @GET
+    @Path("/shops/{shop_id}/receipts/{receipt_id}/payments")
+    Response<Payment> findShopPaymentByReceipt(
+            @PathParam("receipt_id") long receiptId,
+            @PathParam("shop_id") String shopId,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page

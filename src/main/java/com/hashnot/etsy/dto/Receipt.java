@@ -200,30 +200,7 @@ public class Receipt {
     @JsonProperty("adjusted_grandtotal")
     private BigDecimal adjustedGrandTotal;
 
-    /**The tracking code for the shipment.
-    DEPRECATED: This field will be removed by 10/2013. Use shipments instead. When a receipt has more than one shipment, behavior of this field is unspecified. */
-    @JsonProperty("shipping_tracking_code")
-    private String shipping_tracking_code;
 
-    /**The tracking URL for the shipment.
-    DEPRECATED: This field will be removed by 10/2013. Use shipments instead. When a receipt has more than one shipment, behavior of this field is unspecified. */
-    @JsonProperty("shipping_tracking_url")
-    private String shipping_tracking_url;
-
-    /**The shipping carrier.
-    DEPRECATED: This field will be removed by 10/2013. Use shipments instead. When a receipt has more than one shipment, behavior of this field is unspecified. */
-    @JsonProperty("shipping_carrier")
-    private String shipping_carrier;
-
-    /**The shipping notification note text.
-    DEPRECATED: This field will be removed by 10/2013. Use shipments instead. When a receipt has more than one shipment, behavior of this field is unspecified. */
-    @JsonProperty("shipping_note")
-    private String shipping_note;
-
-    /**The date the last shipping notification was sent.
-    DEPRECATED: This field will be removed by 10/2013. Use shipments instead. When a receipt has more than one shipment, behavior of this field is unspecified. */
-    @JsonProperty("shipping_notification_date")
-    private int shipping_notification_date;
 
     /**Shipment information associated to this receipt. */
 /*
@@ -504,46 +481,6 @@ public class Receipt {
         this.adjustedGrandTotal = adjustedGrandTotal;
     }
 
-    public String getShipping_tracking_code() {
-        return shipping_tracking_code;
-    }
-
-    public void setShipping_tracking_code(String shipping_tracking_code) {
-        this.shipping_tracking_code = shipping_tracking_code;
-    }
-
-    public String getShipping_tracking_url() {
-        return shipping_tracking_url;
-    }
-
-    public void setShipping_tracking_url(String shipping_tracking_url) {
-        this.shipping_tracking_url = shipping_tracking_url;
-    }
-
-    public String getShipping_carrier() {
-        return shipping_carrier;
-    }
-
-    public void setShipping_carrier(String shipping_carrier) {
-        this.shipping_carrier = shipping_carrier;
-    }
-
-    public String getShipping_note() {
-        return shipping_note;
-    }
-
-    public void setShipping_note(String shipping_note) {
-        this.shipping_note = shipping_note;
-    }
-
-    public int getShipping_notification_date() {
-        return shipping_notification_date;
-    }
-
-    public void setShipping_notification_date(int shipping_notification_date) {
-        this.shipping_notification_date = shipping_notification_date;
-    }
-
     public User getBuyer() {
         return buyer;
     }
@@ -610,11 +547,6 @@ public class Receipt {
                 ", subtotal=" + subtotal +
                 ", grandTotal=" + grandTotal +
                 ", adjustedGrandTotal=" + adjustedGrandTotal +
-                ", shipping_tracking_code='" + shipping_tracking_code + '\'' +
-                ", shipping_tracking_url='" + shipping_tracking_url + '\'' +
-                ", shipping_carrier='" + shipping_carrier + '\'' +
-                ", shipping_note='" + shipping_note + '\'' +
-                ", shipping_notification_date=" + shipping_notification_date +
                 ", buyer=" + buyer +
                 ", seller=" + seller +
                 ", transactions=" + transactions +

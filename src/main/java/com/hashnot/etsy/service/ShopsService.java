@@ -1,13 +1,12 @@
 package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Shops;
+import com.hashnot.etsy.dto.LedgerEntry;
 import com.hashnot.etsy.dto.Listing;
 import com.hashnot.etsy.dto.Receipt;
 import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +40,18 @@ public class ShopsService extends AbstractEtsyService {
             Integer limit
     ) throws IOException {
         return call(offset -> shops.findAllShopReceipts(shopId, createdFrom, createdTo, paid, shipped, includes, limit, offset, null));
+    }
+
+    /**
+     * Get a Shop Payment Account Ledger's Entries
+     */
+    public Observable<Response<LedgerEntry>> findLedgerEntries(
+            String shopId,
+            Date minCreated,
+            Date maxCreated,
+            Integer limit
+    ) throws IOException {
+        return call(offset -> shops.findLedgerEntries(shopId, minCreated, maxCreated, limit, offset, null));
     }
 
 }

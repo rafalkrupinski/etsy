@@ -69,7 +69,7 @@ public class Transaction {
      * The quantity of items in this transaction.
      */
     @JsonProperty("quantity")
-    private int quantity;
+    private BigDecimal quantity;
 
     /**
      * The tags in the listing for this transaction.
@@ -266,11 +266,11 @@ public class Transaction {
         this.currencyCode = currencyCode;
     }
 
-    public int getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
