@@ -452,4 +452,15 @@ public class Transaction {
                 ", receipt=" + receipt +
                 '}';
     }
+
+    public Transaction() {
+    }
+
+    public Transaction(Date paidTime, BigDecimal price, BigDecimal quantity, long receiptId, long listingId) {
+        this.paidTime = paidTime;
+        this.price = price;
+        this.quantity = quantity;
+        this.receiptId = receiptId;
+        this.listingId = listingId;
+    }
 }

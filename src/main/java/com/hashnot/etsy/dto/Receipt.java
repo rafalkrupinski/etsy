@@ -553,4 +553,45 @@ public class Receipt {
                 ", listings=" + listings +
                 '}';
     }
+
+    public Receipt() {
+    }
+
+    public Receipt(Receipt other) {
+        this.receiptId = other.receiptId;
+        this.orderId = other.orderId;
+        this.sellerUserId = other.sellerUserId;
+        this.buyerUserId = other.buyerUserId;
+        this.creationTime = other.creationTime;
+        this.lastModifiedTime = other.lastModifiedTime;
+        this.name = other.name;
+        this.firstLine = other.firstLine;
+        this.secondLine = other.secondLine;
+        this.city = other.city;
+        this.state = other.state;
+        this.zip = other.zip;
+        this.countryId = other.countryId;
+        this.paymentMethod = other.paymentMethod;
+        this.paymentEmail = other.paymentEmail;
+        this.messageFromSeller = other.messageFromSeller;
+        this.messageFromBuyer = other.messageFromBuyer;
+        this.paid = other.paid;
+        this.totalTaxCost = other.totalTaxCost;
+        this.totalVatCost = other.totalVatCost;
+        this.totalPrice = other.totalPrice;
+        this.totalShippingCost = other.totalShippingCost;
+        this.currencyCode = other.currencyCode;
+        this.messageFromPayment = other.messageFromPayment;
+        this.shipped = other.shipped;
+        this.buyerEmail = other.buyerEmail;
+        this.sellerEmail = other.sellerEmail;
+        this.discountAmount = other.discountAmount;
+        this.subtotal = other.subtotal;
+        this.grandTotal = other.grandTotal;
+        this.adjustedGrandTotal = other.adjustedGrandTotal;
+        this.buyer = other.buyer;
+        this.seller = other.seller;
+        this.transactions = other.transactions;
+        this.listings = other.listings;
+    }
 }
