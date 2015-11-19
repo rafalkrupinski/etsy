@@ -4,6 +4,7 @@ package com.hashnot.etsy;
 import com.hashnot.etsy.dto.ListingImage;
 import com.hashnot.etsy.dto.Listing;
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.etsy.dto.Transaction;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,11 +15,11 @@ import java.util.List;
 /**
  * @author Rafał Krupiński
  */
-@Path("v2")
+@Path("v2/listings")
 public interface Listings {
 
     @POST
-    @Path("listings")
+    @Path("/")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     Response<Listing> createListing(
             @FormParam("quantity") int quantity,
@@ -47,7 +48,7 @@ public interface Listings {
     ) throws IOException;
 
     @GET
-    @Path("listings/active.json")
+    @Path("active.json")
     Response<Listing> findAllListingActive(
             @QueryParam("api_key") String apiKey,
             @QueryParam("keywords") String keywords,
@@ -57,7 +58,7 @@ public interface Listings {
     ) throws IOException;
 
     @GET
-    @Path("listings/{listingId}.json")
+    @Path("{listingId}.json")
     Response<Listing> getListing(
             @PathParam("listingId") List<Long> listingId,
             @QueryParam("includes") List<String> includes,
@@ -66,7 +67,7 @@ public interface Listings {
     ) throws IOException;
 
     @PUT
-    @Path("listings/{listingId}")
+    @Path("{listingId}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     Response<Listing> updateListing(
             @PathParam("listingId") long listingId,
@@ -126,4 +127,17 @@ public interface Listings {
             @FormParam("is_watermarked") Boolean watermarked
     ) throws IOException;
 */
+
+    /**
+     * Retrieves a set of Transaction objects associated to a Listing.
+     */
+    @GET
+    @Path("/{listing_id}/transactions")
+    Response<Transaction> findAllListingTransactions(
+            @PathParam("listing_id") long listingId,
+            @QueryParam("includes") List<String> includes,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset
+    ) throws IOException;
+
 }

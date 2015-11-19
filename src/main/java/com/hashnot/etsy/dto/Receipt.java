@@ -201,7 +201,6 @@ public class Receipt {
     private BigDecimal adjustedGrandTotal;
 
 
-
     /**Shipment information associated to this receipt. */
 /*
     @JsonProperty("shipments")
@@ -210,7 +209,13 @@ public class Receipt {
 
 
     //Coupon 	private 	transactions_r 	Coupon 	The coupon for the receipt.
-    //Country 	private 	transactions_r 	Country 	The country to which the order was shipped.
+
+    /**
+     * The country to which the order was shipped.
+     */
+    @JsonProperty("Country")
+    private Country country;
+
     /**
      * The buyer of the items in this receipt.
      */
@@ -223,9 +228,11 @@ public class Receipt {
     @JsonProperty("Seller")
     private User seller;
 
-    /**The transactions associated to this receipt*/
+    /**
+     * The transactions associated to this receipt
+     */
     @JsonProperty("Transactions")
-    private List<Transaction>transactions;
+    private List<Transaction> transactions;
 
     /**
      * The listings associated to this receipt
@@ -513,6 +520,10 @@ public class Receipt {
         this.listings = listings;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
     @Override
     public String toString() {
         return "Receipt{" +
@@ -551,6 +562,7 @@ public class Receipt {
                 ", seller=" + seller +
                 ", transactions=" + transactions +
                 ", listings=" + listings +
+                ", Country=" + country +
                 '}';
     }
 
@@ -593,5 +605,6 @@ public class Receipt {
         this.seller = other.seller;
         this.transactions = other.transactions;
         this.listings = other.listings;
+        this.country = other.country;
     }
 }
