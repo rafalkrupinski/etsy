@@ -625,6 +625,10 @@ public class Listing {
         return usedManufacturer;
     }
 
+    public void setListingId(long listingId) {
+        this.listingId = listingId;
+    }
+
     @Override
     public int hashCode() {
         return Long.hashCode(listingId);

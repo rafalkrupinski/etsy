@@ -9,6 +9,7 @@ import rx.Observable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -123,7 +124,7 @@ public class ListingsService extends AbstractEtsyService {
         return call(offset -> listings.updateListing(listingId, quantity, title, description, price, wholesalePrice, materials, renew, shippingTemplateId, shopSectionId, state, imageIds, customizable, weight, length, width, height, weightUnit, dimensionsUnit, nonTaxable, categoryId, taxonomyId, tags, whoMade, isSupply, whenMade, recipient, occasion, style, processingMin, processingMax, featuredRank));
     }
 
-    public Observable<Response<Listing>> updateListing(Listing l, BigDecimal wholesalePrice, Boolean renew, String featuredRank) {
+    public Observable<Response<Listing>> updateListing(Listing l, BigDecimal wholesalePrice, Boolean renew) {
         return updateListing(
                 l.getListingId(),
                 l.getQuantity(),
@@ -136,12 +137,12 @@ public class ListingsService extends AbstractEtsyService {
                 l.getShippingTemplateId(),
                 l.getShopSectionId(),
                 l.getState(),
-                l.getImages().stream().map(ListingImage::getListingImageId).collect(Collectors.toList()),
+                ns(l.getImages(), i -> i.stream().map(ListingImage::getListingImageId).collect(Collectors.toList())),
                 l.isCustomizable(),
-                new BigDecimal(l.getWeight()),
-                new BigDecimal(l.getItemLength()),
-                new BigDecimal(l.getItemWidth()),
-                new BigDecimal(l.getItemHeight()),
+                ns(l.getWeight(), BigDecimal::new),
+                ns(l.getItemLength(), BigDecimal::new),
+                ns(l.getItemWidth(), BigDecimal::new),
+                ns(l.getItemHeight(), BigDecimal::new),
                 l.getWeightUnits(),
                 l.getItemDimensionsUnit(),
                 l.isNonTaxable(),
@@ -156,8 +157,11 @@ public class ListingsService extends AbstractEtsyService {
                 l.getStyle(),
                 l.getProcessingMin(),
                 l.getProcessingMax(),
-                featuredRank
+                l.getFeaturedRank()
         );
     }
 
+    private static <O, I> O ns(I o, Function<I, O> conv) {
+        return o == null ? null : conv.apply(o);
+    }
 }

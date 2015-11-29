@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Rafał Krupiński
  */
-public class Transaction {
+public class Transaction implements Comparable<Transaction> {
     /**
      * The numeric ID for this transaction.
      */
@@ -81,7 +81,7 @@ public class Transaction {
      * The materials in the listing for this transaction.
      */
     @JsonProperty("materials")
-    private List<String>materials;
+    private List<String> materials;
 
     /**
      * The numeric ID of the primary listing image for this transaction.
@@ -462,5 +462,10 @@ public class Transaction {
         this.quantity = quantity;
         this.receiptId = receiptId;
         this.listingId = listingId;
+    }
+
+    @Override
+    public int compareTo(Transaction o) {
+        return (int) (transactionId - o.getTransactionId());
     }
 }

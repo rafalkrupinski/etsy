@@ -95,4 +95,18 @@ public interface Shops {
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page
     ) throws IOException;
+
+    /**
+     * Retrieves Listings associated to a Shop that are featured
+     */
+    @GET
+    @Path("/shops/{shop_id}/listings/featured")
+    Response<Listing> findAllShopListingsFeatured(
+            @PathParam("shop_id") String shopId,
+
+            @QueryParam("includes") List<String> includes,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page
+    ) throws IOException;
 }
