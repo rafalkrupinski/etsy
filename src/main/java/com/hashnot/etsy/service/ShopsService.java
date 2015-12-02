@@ -23,10 +23,10 @@ public class ShopsService extends AbstractEtsyService {
         this.shops = shops;
     }
 
-    public Observable<Response<Listing>> findAllShopListings(String shopId) throws IOException {
-        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(apiKey, "active", MAX_LIMIT, offset, null));
-        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(apiKey, "expired", MAX_LIMIT, offset, null));
-        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(apiKey, "inactive", MAX_LIMIT, offset, null));
+    public Observable<Response<Listing>> findAllShopListings(String shopId) {
+        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", MAX_LIMIT, offset, null));
+        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", MAX_LIMIT, offset, null));
+        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", MAX_LIMIT, offset, null));
         return Observable.concat(active, expired, inactive);
     }
 
@@ -38,7 +38,7 @@ public class ShopsService extends AbstractEtsyService {
             Boolean shipped,
             List<String> includes,
             Integer limit
-    ) throws IOException {
+    ) {
         return call(offset -> shops.findAllShopReceipts(shopId, createdFrom, createdTo, paid, shipped, includes, limit, offset, null));
     }
 
@@ -50,7 +50,7 @@ public class ShopsService extends AbstractEtsyService {
             Date minCreated,
             Date maxCreated,
             Integer limit
-    ) throws IOException {
+    ) {
         return call(offset -> shops.findLedgerEntries(shopId, minCreated, maxCreated, limit, offset, null));
     }
 

@@ -115,7 +115,7 @@ public class Listing {
      * the item weight
      */
     @JsonProperty("item_weight")
-    private Integer weight;
+    private BigDecimal weight;
 
     /**
      * the item weight units
@@ -127,19 +127,19 @@ public class Listing {
      * the item length
      */
     @JsonProperty("item_length")
-    private Integer itemLength;
+    private BigDecimal itemLength;
 
     /**
      * the item width
      */
     @JsonProperty("item_width")
-    private Integer itemWidth;
+    private BigDecimal itemWidth;
 
     /**
      * the item height
      */
     @JsonProperty("item_height")
-    private Integer itemHeight;
+    private BigDecimal itemHeight;
 
     /**
      * the item dimensions units
@@ -553,11 +553,11 @@ public class Listing {
         return isSupply;
     }
 
-    public Integer getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
@@ -569,27 +569,27 @@ public class Listing {
         this.weightUnits = weightUnits;
     }
 
-    public Integer getItemLength() {
+    public BigDecimal getItemLength() {
         return itemLength;
     }
 
-    public void setItemLength(Integer itemLength) {
+    public void setItemLength(BigDecimal itemLength) {
         this.itemLength = itemLength;
     }
 
-    public Integer getItemWidth() {
+    public BigDecimal getItemWidth() {
         return itemWidth;
     }
 
-    public void setItemWidth(Integer itemWidth) {
+    public void setItemWidth(BigDecimal itemWidth) {
         this.itemWidth = itemWidth;
     }
 
-    public Integer getItemHeight() {
+    public BigDecimal getItemHeight() {
         return itemHeight;
     }
 
-    public void setItemHeight(Integer itemHeight) {
+    public void setItemHeight(BigDecimal itemHeight) {
         this.itemHeight = itemHeight;
     }
 

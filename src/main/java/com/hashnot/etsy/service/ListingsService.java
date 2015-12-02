@@ -9,7 +9,6 @@ import rx.Observable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -139,10 +138,10 @@ public class ListingsService extends AbstractEtsyService {
                 l.getState(),
                 ns(l.getImages(), i -> i.stream().map(ListingImage::getListingImageId).collect(Collectors.toList())),
                 l.isCustomizable(),
-                ns(l.getWeight(), BigDecimal::new),
-                ns(l.getItemLength(), BigDecimal::new),
-                ns(l.getItemWidth(), BigDecimal::new),
-                ns(l.getItemHeight(), BigDecimal::new),
+                l.getWeight(),
+                l.getItemLength(),
+                l.getItemWidth(),
+                l.getItemHeight(),
                 l.getWeightUnits(),
                 l.getItemDimensionsUnit(),
                 l.isNonTaxable(),
@@ -159,9 +158,5 @@ public class ListingsService extends AbstractEtsyService {
                 l.getProcessingMax(),
                 l.getFeaturedRank()
         );
-    }
-
-    private static <O, I> O ns(I o, Function<I, O> conv) {
-        return o == null ? null : conv.apply(o);
     }
 }

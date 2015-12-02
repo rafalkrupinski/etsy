@@ -17,54 +17,64 @@ public class Transaction implements Comparable<Transaction> {
      */
     @JsonProperty("transaction_id")
     private long transactionId;
+
     /**
      * The title of the listing for this transaction.
      */
     @JsonProperty("title")
     private String title;
+
     /**
      * The description of the listing for this transaction.
      */
     @JsonProperty("description")
     private String description;
+
     /**
      * The numeric ID for the seller of this transaction.
      */
     @JsonProperty("seller_user_id")
     private long sellerUserId;
+
     /**
      * The numeric ID for the buyer of this transaction.
      */
     @JsonProperty("buyer_user_id")
     private Long buyerUserId;
+
     /**
      * The date and time the transaction was created, in epoch seconds.
      */
     @JsonProperty("creation_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
     private Date creationTime;
+
     /**
      * The date and time the transaction was paid, in epoch seconds.
      */
     @JsonProperty("paid_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
     private Date paidTime;
+
     /**
      * The date and time the transaction was shipped, in epoch seconds.
      */
     @JsonProperty("shipped_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
     private Date shippedTime;
+
     /**
      * The price of the transaction.
      */
     @JsonProperty("price")
     private BigDecimal price;
+
     /**
      * The ISO code (alphabetic) for the seller's native currency.
      */
     @JsonProperty("currency_code")
     private String currencyCode;
+
     /**
      * The quantity of items in this transaction.
      */
@@ -142,6 +152,7 @@ public class Transaction implements Comparable<Transaction> {
      */
     @JsonProperty("transaction_type")
     private String transactionType;
+
     /**
      * URL of this transaction
      */

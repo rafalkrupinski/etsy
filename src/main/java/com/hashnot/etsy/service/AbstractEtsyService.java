@@ -8,6 +8,7 @@ import rx.Observer;
 import rx.subjects.ReplaySubject;
 
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 
 /**
  * @author Rafał Krupiński
@@ -20,6 +21,10 @@ public class AbstractEtsyService {
     public AbstractEtsyService(String apiKey, Executor executor) {
         this.apiKey = apiKey;
         this.executor = executor;
+    }
+
+    static <O, I> O ns(I o, Function<I, O> conv) {
+        return o == null ? null : conv.apply(o);
     }
 
     protected <T> Observable<Response<T>> call(ThrowingFunction<Integer, Response<T>> method) {
