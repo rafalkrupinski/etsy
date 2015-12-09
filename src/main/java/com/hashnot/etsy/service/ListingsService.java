@@ -4,6 +4,7 @@ import com.hashnot.etsy.Listings;
 import com.hashnot.etsy.dto.Listing;
 import com.hashnot.etsy.dto.ListingImage;
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.etsy.dto.Transaction;
 import rx.Observable;
 
 import java.math.BigDecimal;
@@ -158,5 +159,15 @@ public class ListingsService extends AbstractEtsyService {
                 l.getProcessingMax(),
                 l.getFeaturedRank()
         );
+    }
+
+    /**
+     * Retrieves a set of Transaction objects associated to a Listing.
+     */
+    public Observable<Response<Transaction>> findAllListingTransactions(
+            long listingId,
+            List<String> includes
+    ) {
+        return call(offset -> listings.findAllListingTransactions(listingId, includes, null, offset));
     }
 }

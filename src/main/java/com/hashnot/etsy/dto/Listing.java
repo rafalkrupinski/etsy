@@ -2,6 +2,7 @@ package com.hashnot.etsy.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hashnot.etsy.dto.variation.Property;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
@@ -196,6 +197,9 @@ public class Listing {
 
     @JsonProperty("Shop")
     private Shop shop;
+
+    @JsonProperty("Variations")
+    private List<Property> variations;
 
     public Long getListingId() {
         return listingId;
@@ -627,6 +631,14 @@ public class Listing {
 
     public void setListingId(long listingId) {
         this.listingId = listingId;
+    }
+
+    public List<Property> getVariations() {
+        return variations;
+    }
+
+    public void setVariations(List<Property> variations) {
+        this.variations = variations;
     }
 
     @Override
