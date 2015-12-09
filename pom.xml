@@ -39,5 +39,11 @@
             <artifactId>rescu</artifactId>
             <version>1.8.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.hashnot</groupId>
+            <artifactId>async-call</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
