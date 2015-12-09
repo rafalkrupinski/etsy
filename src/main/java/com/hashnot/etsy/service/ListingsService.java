@@ -118,7 +118,7 @@ public class ListingsService extends AbstractEtsyService {
             List<String> style,
             Integer processingMin,
             Integer processingMax,
-            String featuredRank
+            Integer featuredRank
     ) {
         return call(offset -> listings.updateListing(listingId, quantity, title, description, price, wholesalePrice, materials, renew, shippingTemplateId, shopSectionId, state, imageIds, customizable, weight, length, width, height, weightUnit, dimensionsUnit, nonTaxable, categoryId, taxonomyId, tags, whoMade, isSupply, whenMade, recipient, occasion, style, processingMin, processingMax, featuredRank));
     }

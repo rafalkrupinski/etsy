@@ -101,7 +101,7 @@ public interface Listings {
             @QueryParam("style") List<String> style,
             @QueryParam("processing_min") Integer processingMin,
             @QueryParam("processing_max") Integer processingMax,
-            @QueryParam("featured_rank") String featuredRank
+            @QueryParam("featured_rank") Integer featuredRank
     ) throws IOException;
 
     /**
