@@ -73,12 +73,12 @@ public class Listing {
 
     /**
      * An int that determines the order of listings in the user's Featured Listings. Lower numbers are towards the front
-     * of the queue. 0 or __OFF__ removes the listing from the queue, and __LAST__ places the listing at the end of the
-     * queue. Note that featured ranks are reordered and normalized on the back end, so the listing's final rank may be
+     * of the queue. 0 removes the listing from the queue.
+     * Note that featured ranks are reordered and normalized on the back end, so the listing's final rank may be
      * different from the value passed in, but will be correct relative to the rest of the queue.
      */
     @JsonProperty("featured_rank")
-    private String featuredRank;
+    private Integer featuredRank;
 
     @JsonProperty("state_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
@@ -269,7 +269,7 @@ public class Listing {
         return shopSectionId;
     }
 
-    public String getFeaturedRank() {
+    public Integer getFeaturedRank() {
         return featuredRank;
     }
 
@@ -473,7 +473,7 @@ public class Listing {
         this.categoryPathIds = categoryPathIds;
     }
 
-    public void setFeaturedRank(String featuredRank) {
+    public void setFeaturedRank(Integer featuredRank) {
         this.featuredRank = featuredRank;
     }
 
