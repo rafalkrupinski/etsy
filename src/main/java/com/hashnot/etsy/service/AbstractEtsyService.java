@@ -1,19 +1,19 @@
 package com.hashnot.etsy.service;
 
+import com.hashnot.async.Async;
 import com.hashnot.etsy.dto.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.subjects.ReplaySubject;
 
 import java.util.concurrent.Executor;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
  * @author Rafał Krupiński
  */
-public class AbstractEtsyService {
+public class AbstractEtsyService extends Async {
     public static final int MAX_LIMIT = 100;
     protected final String apiKey;
     protected Executor executor;
@@ -29,39 +29,34 @@ public class AbstractEtsyService {
 
     protected <T> Observable<Response<T>> call(ThrowingFunction<Integer, Response<T>> method) {
         ReplaySubject<Response<T>> result = ReplaySubject.create();
-        executor.execute(new Retriever<>(method, result, executor));
+        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result));
         return result;
     }
 
-    private static class Retriever<T> implements Runnable {
-        final protected Logger log = LoggerFactory.getLogger(Retriever.class);
-
-        private ThrowingFunction<Integer, Response<T>> supplier;
-        private Observer<Response<T>> observer;
+    private static class ResponseHandler<T> implements BiConsumer<Response<T>, Throwable> {
         private Executor executor;
+        private ThrowingFunction<Integer, Response<T>> method;
+        private Observer<Response<T>> observer;
         private int count = 0;
 
-        public Retriever(ThrowingFunction<Integer, Response<T>> supplier, Observer<Response<T>> observable, Executor executor) {
-            this.supplier = supplier;
-            this.observer = observable;
+        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer) {
             this.executor = executor;
+            this.method = method;
+            this.observer = observer;
         }
 
         @Override
-        public void run() {
-            try {
-                Response<T> active = supplier.apply(count);
-                observer.onNext(active);
-                count += active.getResults().size();
+        public void accept(Response<T> result, Throwable throwable) {
+            if (throwable != null)
+                observer.onError(throwable);
+            else {
+                observer.onNext(result);
+                count += result.getResults().size();
 
-                if (active.getCount() > count)
-                    executor.execute(this::run);
+                if (result.getCount() > count)
+                    Async.call(() -> method.apply(count), executor, this);
                 else
                     observer.onCompleted();
-
-            } catch (Throwable e) {
-                log.warn("Error", e);
-                observer.onError(e);
             }
         }
     }
