@@ -34,11 +34,11 @@ public class Shop {
     @JsonProperty("Sections")
     private List<ShopSection> sections;
 
-    public Long getShopId() {
+    public long getShopId() {
         return shopId;
     }
 
-    public void setShopId(Long shopId) {
+    public void setShopId(long shopId) {
         this.shopId = shopId;
     }
 
