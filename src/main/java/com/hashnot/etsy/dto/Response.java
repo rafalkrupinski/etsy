@@ -17,6 +17,9 @@ public class Response<T> {
     @JsonProperty
     private String type;
 
+    @JsonProperty("pagination")
+    private Pagination pagination;
+
     public int getCount() {
         return count;
     }
@@ -39,5 +42,9 @@ public class Response<T> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Pagination getPagination() {
+        return pagination;
     }
 }
