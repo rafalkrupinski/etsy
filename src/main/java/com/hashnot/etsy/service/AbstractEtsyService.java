@@ -15,12 +15,9 @@ import java.util.function.Function;
  * @author Rafał Krupiński
  */
 public class AbstractEtsyService extends Async {
-    public static final int MAX_LIMIT = 100;
-    protected final String apiKey;
     protected Executor executor;
 
-    public AbstractEtsyService(String apiKey, Executor executor) {
-        this.apiKey = apiKey;
+    public AbstractEtsyService(Executor executor) {
         this.executor = executor;
     }
 

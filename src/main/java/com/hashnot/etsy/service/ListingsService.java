@@ -18,17 +18,17 @@ import java.util.stream.Collectors;
 public class ListingsService extends AbstractEtsyService {
     final private Listings listings;
 
-    public ListingsService(Listings listings, String apiKey, Executor executor) {
-        super(apiKey, executor);
+    public ListingsService(Listings listings, Executor executor) {
+        super(executor);
         this.listings = listings;
     }
 
-    public Observable<Response<Listing>> getListing(List<Long> listingIds, List<String> includes) {
-        return call(offset -> listings.getListing(listingIds, includes, MAX_LIMIT, offset));
+    public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, List<String> includes) {
+        return call(offset -> listings.getListing(listingIds, includes, null, offset));
     }
 
     public Observable<Response<Listing>> findAllListingActive(String query, List<String> includes) {
-        return call(offset -> listings.findAllListingActive(apiKey, query, includes, MAX_LIMIT, offset));
+        return call(offset -> listings.findAllListingActive(null, query, includes, null, offset));
     }
 
     public Observable<Response<Listing>> createListing(

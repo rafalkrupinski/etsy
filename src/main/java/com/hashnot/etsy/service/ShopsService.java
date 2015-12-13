@@ -17,15 +17,15 @@ import java.util.concurrent.Executor;
 public class ShopsService extends AbstractEtsyService {
     private Shops shops;
 
-    public ShopsService(String apiKey, Executor executor, Shops shops) {
-        super(apiKey, executor);
+    public ShopsService(Executor executor, Shops shops) {
+        super(executor);
         this.shops = shops;
     }
 
     public Observable<Response<Listing>> findAllShopListings(String shopId) {
-        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", MAX_LIMIT, offset, null));
-        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", MAX_LIMIT, offset, null));
-        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", MAX_LIMIT, offset, null));
+        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", null, offset, null));
+        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", null, offset, null));
+        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", null, offset, null));
         return Observable.concat(active, expired, inactive);
     }
 

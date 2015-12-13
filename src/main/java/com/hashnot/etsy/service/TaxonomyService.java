@@ -13,8 +13,8 @@ import java.util.concurrent.Executor;
 public class TaxonomyService extends AbstractEtsyService {
     private Taxonomy taxonomy;
 
-    public TaxonomyService(Taxonomy taxonomy, String apiKey, Executor executor) {
-        super(apiKey, executor);
+    public TaxonomyService(Taxonomy taxonomy, Executor executor) {
+        super(executor);
         this.taxonomy = taxonomy;
     }
 
