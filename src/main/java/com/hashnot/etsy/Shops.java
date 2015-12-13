@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,9 +49,8 @@ public interface Shops {
     @Path("/shops/{shopId}/receipts")
     Response<Receipt> findAllShopReceipts(
             @PathParam("shopId") String shopId,
-            @QueryParam("min_created") Date createdFrom,
-            @QueryParam("max_created") Date createdTo,
-
+            @QueryParam("min_created") Integer createdFrom,
+            @QueryParam("max_created") Integer createdTo,
             @QueryParam("was_paid") Boolean paid,
             @QueryParam("was_shipped") Boolean shipped,
 
@@ -76,8 +74,8 @@ public interface Shops {
     @Path("/shops/{shopId}/ledger/entries")
     Response<LedgerEntry> findLedgerEntries(
             @PathParam("shopId") String shopId,
-            @QueryParam("min_created") Date minCreated,
-            @QueryParam("max_created") Date maxCreated,
+            @QueryParam("min_created") Integer minCreated,
+            @QueryParam("max_created") Integer maxCreated,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page

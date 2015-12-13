@@ -7,8 +7,7 @@ import com.hashnot.etsy.dto.Receipt;
 import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 
-import java.io.IOException;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -32,14 +31,14 @@ public class ShopsService extends AbstractEtsyService {
 
     public Observable<Response<Receipt>> findAllShopReceipts(
             String shopId,
-            Date createdFrom,
-            Date createdTo,
+            ZonedDateTime createdFrom,
+            ZonedDateTime createdTo,
             Boolean paid,
             Boolean shipped,
             List<String> includes,
             Integer limit
     ) {
-        return call(offset -> shops.findAllShopReceipts(shopId, createdFrom, createdTo, paid, shipped, includes, limit, offset, null));
+        return call(offset -> shops.findAllShopReceipts(shopId, toTimeStamp(createdFrom), toTimeStamp(createdTo), paid, shipped, includes, limit, offset, null));
     }
 
     /**
@@ -47,11 +46,11 @@ public class ShopsService extends AbstractEtsyService {
      */
     public Observable<Response<LedgerEntry>> findLedgerEntries(
             String shopId,
-            Date minCreated,
-            Date maxCreated,
+            ZonedDateTime minCreated,
+            ZonedDateTime maxCreated,
             Integer limit
     ) {
-        return call(offset -> shops.findLedgerEntries(shopId, minCreated, maxCreated, limit, offset, null));
+        return call(offset -> shops.findLedgerEntries(shopId, toTimeStamp(minCreated), toTimeStamp(maxCreated), limit, offset, null));
     }
 
 }

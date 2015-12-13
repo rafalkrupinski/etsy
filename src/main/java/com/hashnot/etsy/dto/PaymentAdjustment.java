@@ -6,7 +6,7 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * @author Rafał Krupiński
@@ -71,13 +71,13 @@ public class PaymentAdjustment {
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date createDate;
+    private ZonedDateTime createDate;
     /**
      * The date and time the payment adjustment was last updated in Epoch seconds.
      */
     @JsonProperty("update_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date updateDate;
+    private ZonedDateTime updateDate;
 
     public long getPaymentAdjustmentId() {
         return paymentAdjustmentId;
@@ -159,19 +159,19 @@ public class PaymentAdjustment {
         this.totalFeeAdjustmentAmount = totalFeeAdjustmentAmount;
     }
 
-    public Date getCreateDate() {
+    public ZonedDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(ZonedDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public Date getUpdateDate() {
+    public ZonedDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(ZonedDateTime updateDate) {
         this.updateDate = updateDate;
     }
 

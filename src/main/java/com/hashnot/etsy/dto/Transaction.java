@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -47,21 +47,21 @@ public class Transaction implements Comparable<Transaction> {
      */
     @JsonProperty("creation_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date creationTime;
+    private ZonedDateTime creationTime;
 
     /**
      * The date and time the transaction was paid, in epoch seconds.
      */
     @JsonProperty("paid_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date paidTime;
+    private ZonedDateTime paidTime;
 
     /**
      * The date and time the transaction was shipped, in epoch seconds.
      */
     @JsonProperty("shipped_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date shippedTime;
+    private ZonedDateTime shippedTime;
 
     /**
      * The price of the transaction.
@@ -237,27 +237,27 @@ public class Transaction implements Comparable<Transaction> {
         this.buyerUserId = buyerUserId;
     }
 
-    public Date getCreationTime() {
+    public ZonedDateTime getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(ZonedDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Date getPaidTime() {
+    public ZonedDateTime getPaidTime() {
         return paidTime;
     }
 
-    public void setPaidTime(Date paidTime) {
+    public void setPaidTime(ZonedDateTime paidTime) {
         this.paidTime = paidTime;
     }
 
-    public Date getShippedTime() {
+    public ZonedDateTime getShippedTime() {
         return shippedTime;
     }
 
-    public void setShippedTime(Date shippedTime) {
+    public void setShippedTime(ZonedDateTime shippedTime) {
         this.shippedTime = shippedTime;
     }
 
@@ -467,7 +467,7 @@ public class Transaction implements Comparable<Transaction> {
     public Transaction() {
     }
 
-    public Transaction(Date paidTime, BigDecimal price, BigDecimal quantity, long receiptId, long listingId) {
+    public Transaction(ZonedDateTime paidTime, BigDecimal price, BigDecimal quantity, long receiptId, long listingId) {
         this.paidTime = paidTime;
         this.price = price;
         this.quantity = quantity;

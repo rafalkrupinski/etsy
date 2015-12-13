@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -41,14 +41,14 @@ public class Receipt {
      */
     @JsonProperty("creation_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date creationTime;
+    private ZonedDateTime creationTime;
 
     /**
      * Last modification time, in epoch seconds.
      */
     @JsonProperty("last_modified_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date lastModifiedTime;
+    private ZonedDateTime lastModifiedTime;
 
     /**
      * The name portion of the buyer's address.
@@ -272,19 +272,19 @@ public class Receipt {
         this.buyerUserId = buyerUserId;
     }
 
-    public Date getCreationTime() {
+    public ZonedDateTime getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(ZonedDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Date getLastModifiedTime() {
+    public ZonedDateTime getLastModifiedTime() {
         return lastModifiedTime;
     }
 
-    public void setLastModifiedTime(Date lastModifiedTime) {
+    public void setLastModifiedTime(ZonedDateTime lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
     }
 

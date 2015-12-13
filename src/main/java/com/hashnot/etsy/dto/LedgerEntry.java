@@ -6,13 +6,13 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * @author Rafał Krupiński
  */
 public class LedgerEntry {
-    public static enum EntryType{
+    public static enum EntryType {
         PAYMENT, // payment for order (credit)
         BILL_PAYMENT, // payment for etsy bill (debit)
         REFUND, // refund to customer (debit)
@@ -81,7 +81,7 @@ public class LedgerEntry {
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private Date createDate;
+    private ZonedDateTime createDate;
 
     public long getLedgerEntryId() {
         return ledgerEntryId;
@@ -147,11 +147,11 @@ public class LedgerEntry {
         this.runningBalance = runningBalance;
     }
 
-    public Date getCreateDate() {
+    public ZonedDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(ZonedDateTime createDate) {
         this.createDate = createDate;
     }
 
