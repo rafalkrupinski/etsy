@@ -6,6 +6,7 @@ import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -525,6 +526,21 @@ public class Receipt {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Receipt receipt = (Receipt) o;
+
+        return receiptId == receipt.receiptId;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (receiptId ^ (receiptId >>> 32));
+    }
+
+    @Override
     public String toString() {
         return "Receipt{" +
                 "receiptId=" + receiptId +
@@ -603,7 +619,7 @@ public class Receipt {
         this.adjustedGrandTotal = other.adjustedGrandTotal;
         this.buyer = other.buyer;
         this.seller = other.seller;
-        this.transactions = other.transactions;
+        this.transactions = new LinkedList<>(other.transactions);
         this.listings = other.listings;
         this.country = other.country;
     }

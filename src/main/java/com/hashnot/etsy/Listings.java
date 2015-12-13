@@ -60,7 +60,7 @@ public interface Listings {
     @GET
     @Path("{listingId}.json")
     Response<Listing> getListing(
-            @PathParam("listingId") List<Long> listingId,
+            @PathParam("listingId") Iterable<Long> listingId,
             @QueryParam("includes") List<String> includes,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
