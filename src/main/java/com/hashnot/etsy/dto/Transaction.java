@@ -2,6 +2,7 @@ package com.hashnot.etsy.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hashnot.etsy.dto.variation.SelectedProperty;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
@@ -162,10 +163,8 @@ public class Transaction implements Comparable<Transaction> {
     /**
      * Purchased variations for this transaction.
      */
-/*
     @JsonProperty("variations")
-    private List(Variations_SelectedProperty)variations;
-*/
+    private List<SelectedProperty> variations;
 
     /**
      * The buyer that is associated with this transaction.
@@ -389,6 +388,14 @@ public class Transaction implements Comparable<Transaction> {
         this.url = url;
     }
 
+    public List<SelectedProperty> getVariations() {
+        return variations;
+    }
+
+    public void setVariations(List<SelectedProperty> variations) {
+        this.variations = variations;
+    }
+
     public User getBuyer() {
         return buyer;
     }
@@ -479,4 +486,5 @@ public class Transaction implements Comparable<Transaction> {
     public int compareTo(Transaction o) {
         return (int) (transactionId - o.getTransactionId());
     }
+
 }
