@@ -42,7 +42,9 @@ public interface Shops {
             @PathParam("status") String status,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
-            @QueryParam("page") Integer page
+            @QueryParam("page") Integer page,
+            @QueryParam("includes") List<String> includes,
+            @QueryParam("fields") List<String> fields
     ) throws IOException;
 
     @GET

@@ -23,9 +23,9 @@ public class ShopsService extends AbstractEtsyService {
     }
 
     public Observable<Response<Listing>> findAllShopListings(String shopId) {
-        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", null, offset, null));
-        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", null, offset, null));
-        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", null, offset, null));
+        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", null, offset, null, null, null));
+        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", null, offset, null, null, null));
+        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", null, offset, null, null, null));
         return Observable.concat(active, expired, inactive);
     }
 
