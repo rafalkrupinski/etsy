@@ -1,8 +1,7 @@
 package com.hashnot.etsy;
 
-
-import com.hashnot.etsy.dto.ListingImage;
 import com.hashnot.etsy.dto.Listing;
+import com.hashnot.etsy.dto.ListingImage;
 import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.Transaction;
 
@@ -10,7 +9,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * @author Rafał Krupiński
@@ -26,10 +24,10 @@ public interface Listings {
             @FormParam("title") String title,
             @FormParam("description") String description,
             @FormParam("price") BigDecimal price,
-            @FormParam("materials") List<String> materials,
+            @FormParam("materials") Iterable<String> materials,
             @FormParam("shipping_template_id") long shippingTemplateId,
             @FormParam("shop_section_id") Long shopSectionId,
-            @FormParam("image_ids") List<Long> imageIds,
+            @FormParam("image_ids") Iterable<Long> imageIds,
             @FormParam("is_customizable") Boolean isCustomizable,
             @FormParam("non_taxable") Boolean nonTaxable,
             @FormParam("image") ListingImage image,
@@ -38,13 +36,13 @@ public interface Listings {
             @FormParam("processing_max") Integer processingMax,
             @FormParam("category_id") Long categoryId,
             @FormParam("taxonomy_id") Long taxonomyId,
-            @FormParam("tags") List<String> tags,
+            @FormParam("tags") Iterable<String> tags,
             @FormParam("who_made") String whoMade,
             @FormParam("is_supply") boolean isSupply,
             @FormParam("when_made") String whenMade,
             @FormParam("recipient") String recipient,
             @FormParam("occasion") String occasion,
-            @FormParam("style") List<String> style
+            @FormParam("style") Iterable<String> style
     ) throws IOException;
 
     @GET
@@ -52,7 +50,7 @@ public interface Listings {
     Response<Listing> findAllListingActive(
             @QueryParam("api_key") String apiKey,
             @QueryParam("keywords") String keywords,
-            @QueryParam("includes") List<String> includes,
+            @QueryParam("includes") Iterable<String> includes,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
     ) throws IOException;
@@ -61,8 +59,8 @@ public interface Listings {
     @Path("{listingId}.json")
     Response<Listing> getListing(
             @PathParam("listingId") Iterable<Long> listingId,
-            @QueryParam("includes") List<String> includes,
-            @QueryParam("fields") List<String> fields,
+            @QueryParam("includes") Iterable<String> includes,
+            @QueryParam("fields") Iterable<String> fields,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
     ) throws IOException;
@@ -77,12 +75,12 @@ public interface Listings {
             @QueryParam("description") String description,
             @QueryParam("price") BigDecimal price,
             @QueryParam("wholesale_price") BigDecimal wholesalePrice,
-            @QueryParam("materials") List<String> materials,
+            @QueryParam("materials") Iterable<String> materials,
             @QueryParam("renew") Boolean renew,
             @QueryParam("shipping_template_id") Long shippingTemplateId,
             @QueryParam("shop_section_id") Long shopSectionId,
             @QueryParam("state") String state,
-            @QueryParam("image_ids") List<Long> imageIds,
+            @QueryParam("image_ids") Iterable<Long> imageIds,
             @QueryParam("is_customizable") Boolean customizable,
             @QueryParam("item_weight") BigDecimal weight,
             @QueryParam("item_length") BigDecimal length,
@@ -93,13 +91,13 @@ public interface Listings {
             @QueryParam("non_taxable") Boolean nonTaxable,
             @QueryParam("category_id") Long categoryId,
             @QueryParam("taxonomy_id") Long taxonomyId,
-            @QueryParam("tags") List<String> tags,
+            @QueryParam("tags") Iterable<String> tags,
             @QueryParam("who_made") String whoMade,
             @QueryParam("is_supply") Boolean isSupply,
             @QueryParam("when_made") String when_made,
             @QueryParam("recipient") String recipient,
             @QueryParam("occasion") String occasion,
-            @QueryParam("style") List<String> style,
+            @QueryParam("style") Iterable<String> style,
             @QueryParam("processing_min") Integer processingMin,
             @QueryParam("processing_max") Integer processingMax,
             @QueryParam("featured_rank") Integer featuredRank
@@ -136,7 +134,7 @@ public interface Listings {
     @Path("/{listing_id}/transactions")
     Response<Transaction> findAllListingTransactions(
             @PathParam("listing_id") long listingId,
-            @QueryParam("includes") List<String> includes,
+            @QueryParam("includes") Iterable<String> includes,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
     ) throws IOException;

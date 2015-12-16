@@ -8,7 +8,7 @@ import com.hashnot.etsy.dto.Transaction;
 import rx.Observable;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
 
@@ -23,11 +23,11 @@ public class ListingsService extends AbstractEtsyService {
         this.listings = listings;
     }
 
-    public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, List<String> includes) {
-        return call(offset -> listings.getListing(listingIds, includes, null, null, offset));
+    public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, Iterable<String> includes, Iterable<String> fields) {
+        return call(offset -> listings.getListing(listingIds, includes, fields, null, offset));
     }
 
-    public Observable<Response<Listing>> findAllListingActive(String query, List<String> includes) {
+    public Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes) {
         return call(offset -> listings.findAllListingActive(null, query, includes, null, offset));
     }
 
@@ -36,10 +36,10 @@ public class ListingsService extends AbstractEtsyService {
             String title,
             String description,
             BigDecimal price,
-            List<String> materials,
+            Iterable<String> materials,
             long shippingTemplateId,
             Long shopSectionId,
-            List<Long> imageIds,
+            Iterable<Long> imageIds,
             Boolean isCustomizable,
             Boolean nonTaxable,
             ListingImage image,
@@ -48,18 +48,18 @@ public class ListingsService extends AbstractEtsyService {
             Integer processingMax,
             Long categoryId,
             Long taxonomyId,
-            List<String> tags,
+            Iterable<String> tags,
             String whoMade,
             boolean isSupply,
             String whenMade,
             String recipient,
             String occasion,
-            List<String> style
+            Iterable<String> style
     ) {
         return call(offset -> listings.createListing(quantity, title, description, price, materials, shippingTemplateId, shopSectionId, imageIds, isCustomizable, nonTaxable, image, state, processingMin, processingMax, categoryId, taxonomyId, tags, whoMade, isSupply, whenMade, recipient, occasion, style));
     }
 
-    public Observable<Response<Listing>> createListing(Listing l, List<Long> imageIds) {
+    public Observable<Response<Listing>> createListing(Listing l, Iterable<Long> imageIds) {
         return createListing(
                 l.getQuantity(),
                 l.getTitle(),
@@ -94,12 +94,12 @@ public class ListingsService extends AbstractEtsyService {
             String description,
             BigDecimal price,
             BigDecimal wholesalePrice,
-            List<String> materials,
+            Iterable<String> materials,
             Boolean renew,
             Long shippingTemplateId,
             Long shopSectionId,
             String state,
-            List<Long> imageIds,
+            Iterable<Long> imageIds,
             Boolean customizable,
             BigDecimal weight,
             BigDecimal length,
@@ -110,13 +110,13 @@ public class ListingsService extends AbstractEtsyService {
             Boolean nonTaxable,
             Long categoryId,
             Long taxonomyId,
-            List<String> tags,
+            Iterable<String> tags,
             String whoMade,
             Boolean isSupply,
             String whenMade,
             String recipient,
             String occasion,
-            List<String> style,
+            Iterable<String> style,
             Integer processingMin,
             Integer processingMax,
             Integer featuredRank
@@ -166,7 +166,7 @@ public class ListingsService extends AbstractEtsyService {
      */
     public Observable<Response<Transaction>> findAllListingTransactions(
             long listingId,
-            List<String> includes
+            Iterable<String> includes
     ) {
         return call(offset -> listings.findAllListingTransactions(listingId, includes, null, offset));
     }
