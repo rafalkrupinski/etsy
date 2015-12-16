@@ -21,7 +21,7 @@ public class Listing {
     }
 
     public enum association {
-        Shop, Variations
+        Shop, Variations, MainImage, Images
     }
 
     @JsonProperty("listing_id")
@@ -197,10 +197,8 @@ public class Listing {
     @JsonProperty("taxonomy_path")
     private List<String> taxonomyPath;
 
-	/*
     @JsonProperty("MainImage")
-	private ListingImage mMainImage;
-	*/
+    private ListingImage mainImage;
 
     @JsonProperty("Images")
     private List<ListingImage> images;
@@ -380,11 +378,7 @@ public class Listing {
     }
 
     public ListingImage getMainImage() {
-        if (images == null || images.size() == 0) {
-            return null;
-        } else {
-            return images.get(0);
-        }
+        return mainImage;
     }
 
     public List<ListingImage> getImages() {
@@ -649,6 +643,14 @@ public class Listing {
 
     public void setVariations(List<Property> variations) {
         this.variations = variations;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setMainImage(ListingImage mainImage) {
+        this.mainImage = mainImage;
     }
 
     @Override
