@@ -8,7 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Rafał Krupiński
@@ -18,7 +18,8 @@ public interface Receipts {
     @GET
     @Path("/{receipt_id}")
     Response<Receipt> getReceipt(
-            @PathParam("receipt_id") List<Long> receiptsIds,
-            @QueryParam("includes") List<String> includes
+            @PathParam("receipt_id") Collection<Long> receiptsIds,
+            @QueryParam("includes") Collection<String> includes,
+            @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 }

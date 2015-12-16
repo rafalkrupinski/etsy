@@ -62,6 +62,7 @@ public interface Listings {
     Response<Listing> getListing(
             @PathParam("listingId") Iterable<Long> listingId,
             @QueryParam("includes") List<String> includes,
+            @QueryParam("fields") List<String> fields,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
     ) throws IOException;

@@ -24,7 +24,7 @@ public class ListingsService extends AbstractEtsyService {
     }
 
     public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, List<String> includes) {
-        return call(offset -> listings.getListing(listingIds, includes, null, offset));
+        return call(offset -> listings.getListing(listingIds, includes, null, null, offset));
     }
 
     public Observable<Response<Listing>> findAllListingActive(String query, List<String> includes) {
