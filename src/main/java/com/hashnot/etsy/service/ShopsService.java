@@ -8,7 +8,7 @@ import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.Executor;
 
 /**
@@ -22,11 +22,17 @@ public class ShopsService extends AbstractEtsyService {
         this.shops = shops;
     }
 
-    public Observable<Response<Listing>> findAllShopListings(String shopId) {
-        Observable<Response<Listing>> active = call(offset -> shops.findAllShopListings(shopId, "active", null, offset, null, null, null));
-        Observable<Response<Listing>> expired = call(offset -> shops.findAllShopListings(shopId, "expired", null, offset, null, null, null));
-        Observable<Response<Listing>> inactive = call(offset -> shops.findAllShopListings(shopId, "inactive", null, offset, null, null, null));
-        return Observable.concat(active, expired, inactive);
+    public Observable<Response<Listing>> findAllShopListings(String shopId, Collection<String> includes, Collection<String> fields) {
+        Observable<Response<Listing>> result = null;
+        for (Listing.AvailableState state : Listing.AvailableState.values()) {
+            Observable<Response<Listing>> observable = call(offset -> shops.findAllShopListings(shopId, state.name(), null, offset, null, includes, fields)).filter(r -> r.getCount() != 0);
+            if (result != null)
+                result = result.concatWith(observable);
+            else
+                result = observable;
+        }
+
+        return result;
     }
 
     public Observable<Response<Receipt>> findAllShopReceipts(
@@ -35,7 +41,7 @@ public class ShopsService extends AbstractEtsyService {
             ZonedDateTime createdTo,
             Boolean paid,
             Boolean shipped,
-            List<String> includes,
+            Collection<String> includes,
             Integer limit
     ) {
         return call(offset -> shops.findAllShopReceipts(shopId, toTimeStamp(createdFrom), toTimeStamp(createdTo), paid, shipped, includes, limit, offset, null));

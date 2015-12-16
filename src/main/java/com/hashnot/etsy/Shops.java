@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Rafał Krupiński
@@ -43,8 +43,8 @@ public interface Shops {
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page,
-            @QueryParam("includes") List<String> includes,
-            @QueryParam("fields") List<String> fields
+            @QueryParam("includes") Collection<String> includes,
+            @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 
     @GET
@@ -56,7 +56,7 @@ public interface Shops {
             @QueryParam("was_paid") Boolean paid,
             @QueryParam("was_shipped") Boolean shipped,
 
-            @QueryParam("includes") List<String> includes,
+            @QueryParam("includes") Collection<String> includes,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page
@@ -104,7 +104,7 @@ public interface Shops {
     Response<Listing> findAllShopListingsFeatured(
             @PathParam("shop_id") String shopId,
 
-            @QueryParam("includes") List<String> includes,
+            @QueryParam("includes") Collection<String> includes,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page

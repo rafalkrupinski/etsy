@@ -13,6 +13,16 @@ import java.util.List;
  * A class representing a single listing in Etsy.
  */
 public class Listing {
+    /**
+     * states available for querying
+     */
+    public enum AvailableState {
+        active, inactive, expired
+    }
+
+    public enum association {
+        Shop, Variations
+    }
 
     @JsonProperty("listing_id")
     private long listingId;
