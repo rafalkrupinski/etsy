@@ -59,4 +59,14 @@ public class ShopsService extends AbstractEtsyService {
         return call(offset -> shops.findLedgerEntries(shopId, toTimeStamp(minCreated), toTimeStamp(maxCreated), limit, offset, null));
     }
 
+    /**
+     * Retrieves Listings associated to a Shop that are featured
+     */
+    public Observable<Response<Listing>> findAllShopListingsFeatured(
+            String shopId,
+            Collection<String> includes,
+            Collection<String> fields
+    ) {
+        return call(offset -> shops.findAllShopListingsFeatured(shopId, includes, fields, null, offset, null));
+    }
 }

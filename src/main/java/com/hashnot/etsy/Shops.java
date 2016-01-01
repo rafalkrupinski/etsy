@@ -105,6 +105,7 @@ public interface Shops {
             @PathParam("shop_id") String shopId,
 
             @QueryParam("includes") Collection<String> includes,
+            @QueryParam("fields") Collection<String> fields,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page
