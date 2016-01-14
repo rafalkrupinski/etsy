@@ -1,10 +1,7 @@
 package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Shops;
-import com.hashnot.etsy.dto.LedgerEntry;
-import com.hashnot.etsy.dto.Listing;
-import com.hashnot.etsy.dto.Receipt;
-import com.hashnot.etsy.dto.Response;
+import com.hashnot.etsy.dto.*;
 import rx.Observable;
 
 import java.time.ZonedDateTime;
@@ -69,4 +66,12 @@ public class ShopsService extends AbstractEtsyService {
     ) {
         return call(offset -> shops.findAllShopListingsFeatured(shopId, includes, fields, null, offset, null));
     }
+
+    public Observable<Response<Payment>> findShopPaymentByReceipt(
+            long receiptId,
+            String shopId
+    ) {
+        return call(offset -> shops.findShopPaymentByReceipt(receiptId, shopId, null, offset, null));
+    }
+
 }

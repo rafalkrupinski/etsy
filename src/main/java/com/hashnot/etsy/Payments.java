@@ -2,6 +2,7 @@ package com.hashnot.etsy;
 
 import com.hashnot.etsy.dto.Payment;
 import com.hashnot.etsy.dto.PaymentAdjustment;
+import com.hashnot.etsy.dto.PaymentAdjustmentItem;
 import com.hashnot.etsy.dto.Response;
 
 import javax.ws.rs.GET;
@@ -37,4 +38,16 @@ public interface Payments {
             @QueryParam("page") Integer page
     ) throws IOException;
 
+    /**
+     * Get Direct Checkout Payment Adjustment Items
+     */
+    @GET
+    @Path("{payment_id}/adjustments/{payment_adjustment_id}/items")
+    Response<PaymentAdjustmentItem> findPaymentAdjustmentItem(
+            @PathParam("payment_id") long paymentId,
+            @PathParam("payment_adjustment_id") long paymentAdjustmentId,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page
+    ) throws IOException;
 }
