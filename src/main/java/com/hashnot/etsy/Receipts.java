@@ -20,6 +20,7 @@ public interface Receipts {
     Response<Receipt> getReceipt(
             @PathParam("receipt_id") Collection<Long> receiptsIds,
             @QueryParam("includes") Collection<String> includes,
-            @QueryParam("fields") Collection<String> fields
+            @QueryParam("fields") Collection<String> fields,
+            @QueryParam("offset") Integer offset
     ) throws IOException;
 }
