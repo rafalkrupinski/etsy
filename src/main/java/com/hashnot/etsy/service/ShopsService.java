@@ -11,7 +11,7 @@ import java.util.concurrent.Executor;
 /**
  * @author Rafał Krupiński
  */
-public class ShopsService extends AbstractEtsyService {
+public class ShopsService extends AbstractEtsyService implements IShopsService {
     private Shops shops;
 
     public ShopsService(Executor executor, Shops shops) {
@@ -19,6 +19,7 @@ public class ShopsService extends AbstractEtsyService {
         this.shops = shops;
     }
 
+    @Override
     public Observable<Response<Listing>> findAllShopListings(String shopId, Collection<String> includes, Collection<String> fields) {
         Observable<Response<Listing>> result = null;
         for (Listing.AvailableState state : Listing.AvailableState.values()) {
@@ -32,6 +33,7 @@ public class ShopsService extends AbstractEtsyService {
         return result;
     }
 
+    @Override
     public Observable<Response<Receipt>> findAllShopReceipts(
             String shopId,
             ZonedDateTime createdFrom,
@@ -47,6 +49,7 @@ public class ShopsService extends AbstractEtsyService {
     /**
      * Get a Shop Payment Account Ledger's Entries
      */
+    @Override
     public Observable<Response<LedgerEntry>> findLedgerEntries(
             String shopId,
             ZonedDateTime minCreated,
@@ -59,6 +62,7 @@ public class ShopsService extends AbstractEtsyService {
     /**
      * Retrieves Listings associated to a Shop that are featured
      */
+    @Override
     public Observable<Response<Listing>> findAllShopListingsFeatured(
             String shopId,
             Collection<String> includes,
@@ -67,6 +71,7 @@ public class ShopsService extends AbstractEtsyService {
         return call(offset -> shops.findAllShopListingsFeatured(shopId, includes, fields, null, offset, null));
     }
 
+    @Override
     public Observable<Response<Payment>> findShopPaymentByReceipt(
             long receiptId,
             String shopId

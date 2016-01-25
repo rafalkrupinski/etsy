@@ -10,7 +10,7 @@ import java.util.concurrent.Executor;
 /**
  * @author Rafał Krupiński
  */
-public class TaxonomyService extends AbstractEtsyService {
+public class TaxonomyService extends AbstractEtsyService implements ITaxonomyService {
     private Taxonomy taxonomy;
 
     public TaxonomyService(Taxonomy taxonomy, Executor executor) {
@@ -21,6 +21,7 @@ public class TaxonomyService extends AbstractEtsyService {
     /**
      * Retrieves all top-level Categories.
      */
+    @Override
     public Observable<Response<Category>> findAllTopCategory() {
         return call(offset -> taxonomy.findAllTopCategory(null, offset));
     }
@@ -29,6 +30,7 @@ public class TaxonomyService extends AbstractEtsyService {
      * Retrieves children of a top-level Category by tag.
      */
 
+    @Override
     public Observable<Response<Category>> findAllTopCategoryChildren(String tag) {
         return call(offset -> taxonomy.findAllTopCategoryChildren(tag, null, offset));
     }
@@ -36,6 +38,7 @@ public class TaxonomyService extends AbstractEtsyService {
     /**
      * Retrieves children of a second-level Category by tag and subtag.
      */
+    @Override
     public Observable<Response<Category>> findAllSubCategoryChildren(
             String tag,
             String subtag

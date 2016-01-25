@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 /**
  * @author Rafał Krupiński
  */
-public class PaymentsService extends AbstractEtsyService {
+public class PaymentsService extends AbstractEtsyService implements IPaymentsService {
     private final Payments payments;
 
     public PaymentsService(Payments payments, Executor executor) {
@@ -24,6 +24,7 @@ public class PaymentsService extends AbstractEtsyService {
     /**
      * Get a Direct Checkout Payment
      */
+    @Override
     public Observable<Response<Payment>> findPayment(
             List<Long> paymentId
     ) {
@@ -33,6 +34,7 @@ public class PaymentsService extends AbstractEtsyService {
     /**
      * Get a Payment Adjustments from a Payment Id
      */
+    @Override
     public Observable<Response<PaymentAdjustment>> findPaymentAdjustments(
             long paymentId
     ) {
@@ -42,6 +44,7 @@ public class PaymentsService extends AbstractEtsyService {
     /**
      * Get Direct Checkout Payment Adjustment Items
      */
+    @Override
     public Observable<Response<PaymentAdjustmentItem>> findPaymentAdjustmentItem(
             long paymentId,
             long paymentAdjustmentId

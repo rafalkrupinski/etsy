@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * @author Rafał Krupiński
  */
-public class ListingsService extends AbstractEtsyService {
+public class ListingsService extends AbstractEtsyService implements IListingsService {
     final private Listings listings;
 
     public ListingsService(Listings listings, Executor executor) {
@@ -23,14 +23,17 @@ public class ListingsService extends AbstractEtsyService {
         this.listings = listings;
     }
 
+    @Override
     public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, Iterable<String> includes, Iterable<String> fields) {
         return call(offset -> listings.getListing(listingIds, includes, fields, null, offset));
     }
 
+    @Override
     public Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes) {
         return call(offset -> listings.findAllListingActive(null, query, includes, null, offset));
     }
 
+    @Override
     public Observable<Response<Listing>> createListing(
             int quantity,
             String title,
@@ -59,6 +62,7 @@ public class ListingsService extends AbstractEtsyService {
         return call(offset -> listings.createListing(quantity, title, description, price, materials, shippingTemplateId, shopSectionId, imageIds, isCustomizable, nonTaxable, image, state, processingMin, processingMax, categoryId, taxonomyId, tags, whoMade, isSupply, whenMade, recipient, occasion, style));
     }
 
+    @Override
     public Observable<Response<Listing>> createListing(Listing l, Iterable<Long> imageIds) {
         return createListing(
                 l.getQuantity(),
@@ -87,6 +91,7 @@ public class ListingsService extends AbstractEtsyService {
         );
     }
 
+    @Override
     public Observable<Response<Listing>> updateListing(
             long listingId,
             Integer quantity,
@@ -124,6 +129,7 @@ public class ListingsService extends AbstractEtsyService {
         return call(offset -> listings.updateListing(listingId, quantity, title, description, price, wholesalePrice, materials, renew, shippingTemplateId, shopSectionId, state, imageIds, customizable, weight, length, width, height, weightUnit, dimensionsUnit, nonTaxable, categoryId, taxonomyId, tags, whoMade, isSupply, whenMade, recipient, occasion, style, processingMin, processingMax, featuredRank));
     }
 
+    @Override
     public Observable<Response<Listing>> updateListing(Listing l, BigDecimal wholesalePrice, Boolean renew) {
         return updateListing(
                 l.getListingId(),
@@ -164,6 +170,7 @@ public class ListingsService extends AbstractEtsyService {
     /**
      * Retrieves a set of Transaction objects associated to a Listing.
      */
+    @Override
     public Observable<Response<Transaction>> findAllListingTransactions(
             long listingId,
             Iterable<String> includes
