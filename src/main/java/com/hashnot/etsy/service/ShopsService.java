@@ -40,10 +40,10 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
             ZonedDateTime createdTo,
             Boolean paid,
             Boolean shipped,
-            Collection<String> includes,
-            Integer limit
+            Integer limit, Collection<String> includes,
+            Collection<String> fields
     ) {
-        return call(offset -> shops.findAllShopReceipts(shopId, toTimeStamp(createdFrom), toTimeStamp(createdTo), paid, shipped, includes, limit, offset, null));
+        return call(offset -> shops.findAllShopReceipts(shopId, toTimeStamp(createdFrom), toTimeStamp(createdTo), paid, shipped, limit, offset, null, includes, fields));
     }
 
     /**
@@ -54,9 +54,10 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
             String shopId,
             ZonedDateTime minCreated,
             ZonedDateTime maxCreated,
-            Integer limit
+            Integer limit,
+            Collection<String> fields
     ) {
-        return call(offset -> shops.findLedgerEntries(shopId, toTimeStamp(minCreated), toTimeStamp(maxCreated), limit, offset, null));
+        return call(offset -> shops.findLedgerEntries(shopId, toTimeStamp(minCreated), toTimeStamp(maxCreated), limit, offset, null, fields));
     }
 
     /**
@@ -74,9 +75,10 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
     @Override
     public Observable<Response<Payment>> findShopPaymentByReceipt(
             long receiptId,
-            String shopId
+            String shopId,
+            Collection<String> fields
     ) {
-        return call(offset -> shops.findShopPaymentByReceipt(receiptId, shopId, null, offset, null));
+        return call(offset -> shops.findShopPaymentByReceipt(receiptId, shopId, null, offset, null, fields));
     }
 
 }

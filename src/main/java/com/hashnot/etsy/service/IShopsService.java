@@ -18,15 +18,16 @@ public interface IShopsService {
             ZonedDateTime createdTo,
             Boolean paid,
             Boolean shipped,
-            Collection<String> includes,
-            Integer limit
+            Integer limit, Collection<String> includes,
+            Collection<String> fields
     );
 
     Observable<Response<LedgerEntry>> findLedgerEntries(
             String shopId,
             ZonedDateTime minCreated,
             ZonedDateTime maxCreated,
-            Integer limit
+            Integer limit,
+            Collection<String> fields
     );
 
     Observable<Response<Listing>> findAllShopListingsFeatured(
@@ -37,6 +38,7 @@ public interface IShopsService {
 
     Observable<Response<Payment>> findShopPaymentByReceipt(
             long receiptId,
-            String shopId
+            String shopId,
+            Collection<String> fields
     );
 }
