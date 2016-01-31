@@ -241,6 +241,9 @@ public class Receipt {
     @JsonProperty("Listings")
     private List<Listing> listings;
 
+    @JsonProperty("Coupon")
+    private Coupon coupon;
+
     public long getReceiptId() {
         return receiptId;
     }
@@ -622,5 +625,14 @@ public class Receipt {
         this.transactions = new LinkedList<>(other.transactions);
         this.listings = other.listings;
         this.country = other.country;
+        this.coupon = other.coupon;
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
     }
 }
