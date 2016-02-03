@@ -6,6 +6,7 @@ package com.hashnot.etsy;
 public interface Etsy {
     String SELF = "__SELF__";
     String BASE_URL = "https://openapi.etsy.com/";
+    int defaultLimit = 25;
 
     /**
      * Read a member's email address

@@ -2,6 +2,7 @@ package com.hashnot.etsy;
 
 import com.hashnot.etsy.dto.Receipt;
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.etsy.dto.Transaction;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,6 +16,9 @@ import java.util.Collection;
  */
 @Path("/v2/receipts")
 public interface Receipts {
+    /**
+     * Retrieves a Receipt by id
+     */
     @GET
     @Path("/{receipt_id}")
     Response<Receipt> getReceipt(
@@ -22,5 +26,21 @@ public interface Receipts {
             @QueryParam("includes") Collection<String> includes,
             @QueryParam("fields") Collection<String> fields,
             @QueryParam("offset") Integer offset
+    ) throws IOException;
+
+    /**
+     * Retrieves a set of Transaction objects associated to a Receipt
+     */
+    @GET
+    @Path("/{receiptId}/transactions")
+    Response<Transaction> findAllReceiptTransactions(
+            @PathParam("receiptId") long receiptId,
+
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page,
+
+            @QueryParam("includes") Collection<String> includes,
+            @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 }
