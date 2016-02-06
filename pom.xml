@@ -41,8 +41,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.hashnot</groupId>
-            <artifactId>async-call</artifactId>
+            <groupId>com.hashnot.u</groupId>
+            <artifactId>micro-async</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

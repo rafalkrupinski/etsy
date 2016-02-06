@@ -1,7 +1,7 @@
 package com.hashnot.etsy.service;
 
-import com.hashnot.async.Async;
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.u.async.Async;
 import rx.Observable;
 import rx.Observer;
 import rx.subjects.ReplaySubject;
