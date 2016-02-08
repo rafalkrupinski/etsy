@@ -29,8 +29,8 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
     }
 
     @Override
-    public Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes) {
-        return call(offset -> listings.findAllListingActive(null, query, includes, null, offset));
+    public Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes, Iterable<String> fields) {
+        return call(offset -> listings.findAllListingActive(null, query, null, offset, includes, fields));
     }
 
     @Override
@@ -173,8 +173,10 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
     @Override
     public Observable<Response<Transaction>> findAllListingTransactions(
             long listingId,
-            Iterable<String> includes
-    ) {
-        return call(offset -> listings.findAllListingTransactions(listingId, includes, null, offset));
+
+            Iterable<String> includes,
+            Iterable<String> fields
+            ) {
+        return call(offset -> listings.findAllListingTransactions(listingId, null, offset, includes,fields));
     }
 }

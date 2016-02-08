@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public interface IListingsService {
     Observable<Response<Listing>> getListing(Iterable<Long> listingIds, Iterable<String> includes, Iterable<String> fields);
 
-    Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes);
+    Observable<Response<Listing>> findAllListingActive(String query, Iterable<String> includes, Iterable<String> fields);
 
     Observable<Response<Listing>> createListing(
             int quantity,
@@ -83,6 +83,8 @@ public interface IListingsService {
 
     Observable<Response<Transaction>> findAllListingTransactions(
             long listingId,
-            Iterable<String> includes
+
+            Iterable<String> includes,
+            Iterable<String> fields
     );
 }

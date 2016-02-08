@@ -50,9 +50,12 @@ public interface Listings {
     Response<Listing> findAllListingActive(
             @QueryParam("api_key") String apiKey,
             @QueryParam("keywords") String keywords,
-            @QueryParam("includes") Iterable<String> includes,
+
             @QueryParam("limit") Integer limit,
-            @QueryParam("offset") Integer offset
+            @QueryParam("offset") Integer offset,
+
+            @QueryParam("includes") Iterable<String> includes,
+            @QueryParam("fields") Iterable<String> fields
     ) throws IOException;
 
     @GET
@@ -134,9 +137,11 @@ public interface Listings {
     @Path("/{listing_id}/transactions")
     Response<Transaction> findAllListingTransactions(
             @PathParam("listing_id") long listingId,
-            @QueryParam("includes") Iterable<String> includes,
             @QueryParam("limit") Integer limit,
-            @QueryParam("offset") Integer offset
+            @QueryParam("offset") Integer offset,
+
+            @QueryParam("includes") Iterable<String> includes,
+            @QueryParam("fields") Iterable<String> fields
     ) throws IOException;
 
 }
