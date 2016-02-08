@@ -12,13 +12,24 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <v.jackson>2.6.4</v.jackson>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${v.jackson}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.7.1</version>
+            <version>${v.jackson}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${v.jackson}</version>
         </dependency>
 
         <dependency>
@@ -31,13 +42,6 @@
             <groupId>io.reactivex</groupId>
             <artifactId>rxjava</artifactId>
             <version>1.0.12</version>
-        </dependency>
-
-        <!-- si.mazi.rescu.HttpResponseAware -->
-        <dependency>
-            <groupId>com.github.mmazi</groupId>
-            <artifactId>rescu</artifactId>
-            <version>1.8.1</version>
         </dependency>
 
         <dependency>
