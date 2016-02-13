@@ -5,19 +5,16 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-
-import static java.time.ZoneOffset.UTC;
+import java.time.Instant;
 
 /**
  * @author Matija Mazi
  */
-public class UnixTimestampDeserializer extends JsonDeserializer<ZonedDateTime> {
+public class UnixTimestampDeserializer extends JsonDeserializer<Instant> {
 
     @Override
-    public ZonedDateTime deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
-        return ZonedDateTime.of(LocalDateTime.ofEpochSecond(jp.getValueAsLong(), 0, UTC), UTC);
+    public Instant deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+        return Instant.ofEpochSecond(jp.getValueAsLong());
     }
 }
 

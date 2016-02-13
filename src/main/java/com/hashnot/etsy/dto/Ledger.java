@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * @author Rafał Krupiński
@@ -31,13 +31,13 @@ public class Ledger {
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime createDate;
+    private Instant createDate;
     /**
      * The date and time the ledger was last updated in Epoch seconds.
      */
     @JsonProperty("update_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime updateDate;
+    private Instant updateDate;
 
     public long getLedger_id() {
         return ledger_id;
@@ -63,19 +63,19 @@ public class Ledger {
         this.currency = currency;
     }
 
-    public ZonedDateTime getCreateDate() {
+    public Instant getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(ZonedDateTime createDate) {
+    public void setCreateDate(Instant createDate) {
         this.createDate = createDate;
     }
 
-    public ZonedDateTime getUpdateDate() {
+    public Instant getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(ZonedDateTime updateDate) {
+    public void setUpdateDate(Instant updateDate) {
         this.updateDate = updateDate;
     }
 }

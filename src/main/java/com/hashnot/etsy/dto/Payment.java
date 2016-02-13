@@ -6,7 +6,7 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * @author Rafał Krupiński
@@ -139,21 +139,21 @@ public class Payment {
      */
     @JsonProperty("shipped_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime shippedDate;
+    private Instant shippedDate;
 
     /**
      * The date and time the payment was created in Epoch seconds.
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime createDate;
+    private Instant createDate;
 
     /**
      * The date and time the payment was last updated in Epoch seconds.
      */
     @JsonProperty("update_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime updateDate;
+    private Instant updateDate;
 
     public long getPaymentId() {
         return paymentId;
@@ -315,27 +315,27 @@ public class Payment {
         this.status = status;
     }
 
-    public ZonedDateTime getShippedDate() {
+    public Instant getShippedDate() {
         return shippedDate;
     }
 
-    public void setShippedDate(ZonedDateTime shippedDate) {
+    public void setShippedDate(Instant shippedDate) {
         this.shippedDate = shippedDate;
     }
 
-    public ZonedDateTime getCreateDate() {
+    public Instant getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(ZonedDateTime createDate) {
+    public void setCreateDate(Instant createDate) {
         this.createDate = createDate;
     }
 
-    public ZonedDateTime getUpdateDate() {
+    public Instant getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(ZonedDateTime updateDate) {
+    public void setUpdateDate(Instant updateDate) {
         this.updateDate = updateDate;
     }
 

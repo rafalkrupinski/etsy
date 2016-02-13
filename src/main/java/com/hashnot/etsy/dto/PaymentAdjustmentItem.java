@@ -6,7 +6,7 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * A Direct Checkout Payment may have adjustments, or refunds. These adjustments can have different items,
@@ -52,7 +52,7 @@ public class PaymentAdjustmentItem {
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime createDate;
+    private Instant createDate;
 
     public long getPaymentAdjustmentItemId() {
         return paymentAdjustmentItemId;
@@ -74,8 +74,32 @@ public class PaymentAdjustmentItem {
         return transactionId;
     }
 
-    public ZonedDateTime getCreateDate() {
+    public Instant getCreateDate() {
         return createDate;
+    }
+
+    public void setPaymentAdjustmentItemId(long paymentAdjustmentItemId) {
+        this.paymentAdjustmentItemId = paymentAdjustmentItemId;
+    }
+
+    public void setPaymentAdjustmentId(long paymentAdjustmentId) {
+        this.paymentAdjustmentId = paymentAdjustmentId;
+    }
+
+    public void setAdjustmentType(AdjustmentType adjustmentType) {
+        this.adjustmentType = adjustmentType;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setTransactionId(long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setCreateDate(Instant createDate) {
+        this.createDate = createDate;
     }
 
     @Override

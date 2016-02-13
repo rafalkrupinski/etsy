@@ -6,7 +6,7 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * @author Rafał Krupiński
@@ -81,7 +81,7 @@ public class LedgerEntry {
      */
     @JsonProperty("create_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime createDate;
+    private Instant createDate;
 
     public long getLedgerEntryId() {
         return ledgerEntryId;
@@ -147,11 +147,11 @@ public class LedgerEntry {
         this.runningBalance = runningBalance;
     }
 
-    public ZonedDateTime getCreateDate() {
+    public Instant getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(ZonedDateTime createDate) {
+    public void setCreateDate(Instant createDate) {
         this.createDate = createDate;
     }
 

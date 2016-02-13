@@ -4,7 +4,7 @@ import com.hashnot.etsy.Shops;
 import com.hashnot.etsy.dto.*;
 import rx.Observable;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.concurrent.Executor;
 
@@ -36,8 +36,8 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
     @Override
     public Observable<Response<Receipt>> findAllShopReceipts(
             String shopId,
-            ZonedDateTime createdFrom,
-            ZonedDateTime createdTo,
+            Instant createdFrom,
+            Instant createdTo,
             Boolean paid,
             Boolean shipped,
             Integer limit, Collection<String> includes,
@@ -52,8 +52,8 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
     @Override
     public Observable<Response<LedgerEntry>> findLedgerEntries(
             String shopId,
-            ZonedDateTime minCreated,
-            ZonedDateTime maxCreated,
+            Instant minCreated,
+            Instant maxCreated,
             Integer limit,
             Collection<String> fields
     ) {

@@ -6,7 +6,7 @@ import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * @author Rafał Krupiński
@@ -63,7 +63,7 @@ public class Coupon {
      */
     @JsonProperty("expiration_date")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime expirationDate;
+    private Instant expirationDate;
     /**
      * The type of coupon: fixed_discount, pct_discount, free_shipping for example
      */
@@ -146,11 +146,11 @@ public class Coupon {
         this.minimumPurchasePrice = minimumPurchasePrice;
     }
 
-    public ZonedDateTime getExpirationDate() {
+    public Instant getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(ZonedDateTime expirationDate) {
+    public void setExpirationDate(Instant expirationDate) {
         this.expirationDate = expirationDate;
     }
 

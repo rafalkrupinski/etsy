@@ -6,7 +6,7 @@ import rx.Observable;
 import rx.Observer;
 import rx.subjects.ReplaySubject;
 
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.concurrent.Executor;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -63,7 +63,7 @@ public class AbstractEtsyService extends Async {
         R apply(T t) throws Exception;
     }
 
-    protected static Integer toTimeStamp(ZonedDateTime time) {
-        return time == null ? null : (int) time.toEpochSecond();
+    protected static Integer toTimeStamp(Instant time) {
+        return time == null ? null : (int) time.getEpochSecond();
     }
 }

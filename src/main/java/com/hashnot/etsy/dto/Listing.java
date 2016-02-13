@@ -6,7 +6,7 @@ import com.hashnot.etsy.dto.variation.Property;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -44,19 +44,19 @@ public class Listing {
 
     @JsonProperty("creation_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime creationTime;
+    private Instant creationTime;
 
     @JsonProperty("ending_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime endingTime;
+    private Instant endingTime;
 
     @JsonProperty("original_creation_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime originalCreationTime;
+    private Instant originalCreationTime;
 
     @JsonProperty("last_modified_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime lastModifiedTime;
+    private Instant lastModifiedTime;
 
     @JsonProperty("price")
     private BigDecimal price;
@@ -93,7 +93,7 @@ public class Listing {
 
     @JsonProperty("state_tsz")
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
-    private ZonedDateTime stateTime;
+    private Instant stateTime;
 
     @JsonProperty("url")
     private String url;
@@ -233,19 +233,19 @@ public class Listing {
         return description;
     }
 
-    public ZonedDateTime getCreationTime() {
+    public Instant getCreationTime() {
         return creationTime;
     }
 
-    public ZonedDateTime getEndingTime() {
+    public Instant getEndingTime() {
         return endingTime;
     }
 
-    public ZonedDateTime getOriginalCreationTime() {
+    public Instant getOriginalCreationTime() {
         return originalCreationTime;
     }
 
-    public ZonedDateTime getLastModifiedTime() {
+    public Instant getLastModifiedTime() {
         return lastModifiedTime;
     }
 
@@ -285,7 +285,7 @@ public class Listing {
         return featuredRank;
     }
 
-    public ZonedDateTime getStateTime() {
+    public Instant getStateTime() {
         return stateTime;
     }
 
@@ -449,15 +449,15 @@ public class Listing {
         this.description = description;
     }
 
-    public void setEndingTime(ZonedDateTime endingTime) {
+    public void setEndingTime(Instant endingTime) {
         this.endingTime = endingTime;
     }
 
-    public void setOriginalCreationTime(ZonedDateTime originalCreationTime) {
+    public void setOriginalCreationTime(Instant originalCreationTime) {
         this.originalCreationTime = originalCreationTime;
     }
 
-    public void setLastModifiedTime(ZonedDateTime lastModifiedTime) {
+    public void setLastModifiedTime(Instant lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
     }
 
@@ -485,7 +485,7 @@ public class Listing {
         this.featuredRank = featuredRank;
     }
 
-    public void setStateTime(ZonedDateTime stateTime) {
+    public void setStateTime(Instant stateTime) {
         this.stateTime = stateTime;
     }
 
@@ -553,7 +553,7 @@ public class Listing {
         this.images = images;
     }
 
-    public void setCreationTime(ZonedDateTime creationTime) {
+    public void setCreationTime(Instant creationTime) {
         this.creationTime = creationTime;
     }
 
