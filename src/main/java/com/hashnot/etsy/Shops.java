@@ -1,6 +1,9 @@
 package com.hashnot.etsy;
 
 import com.hashnot.etsy.dto.*;
+import com.hashnot.etsy.dto.fin.Ledger;
+import com.hashnot.etsy.dto.fin.LedgerEntry;
+import com.hashnot.etsy.dto.fin.Payment;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

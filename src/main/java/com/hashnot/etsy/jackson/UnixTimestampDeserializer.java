@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.time.Instant;
 
 /**
- * @author Matija Mazi
+ * @author Rafał Krupiński
  */
 public class UnixTimestampDeserializer extends JsonDeserializer<Instant> {
 

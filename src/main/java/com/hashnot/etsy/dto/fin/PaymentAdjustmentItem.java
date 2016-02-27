@@ -1,7 +1,8 @@
-package com.hashnot.etsy.dto;
+package com.hashnot.etsy.dto.fin;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hashnot.etsy.dto.AdjustmentType;
 import com.hashnot.etsy.jackson.PennyDeserializer;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 

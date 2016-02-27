@@ -1,8 +1,8 @@
 package com.hashnot.etsy.service;
 
-import com.hashnot.etsy.dto.Payment;
-import com.hashnot.etsy.dto.PaymentAdjustment;
-import com.hashnot.etsy.dto.PaymentAdjustmentItem;
+import com.hashnot.etsy.dto.fin.Payment;
+import com.hashnot.etsy.dto.fin.PaymentAdjustment;
+import com.hashnot.etsy.dto.fin.PaymentAdjustmentItem;
 import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 

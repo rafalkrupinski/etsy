@@ -2,6 +2,8 @@ package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Shops;
 import com.hashnot.etsy.dto.*;
+import com.hashnot.etsy.dto.fin.LedgerEntry;
+import com.hashnot.etsy.dto.fin.Payment;
 import rx.Observable;
 
 import java.time.Instant;
