@@ -16,7 +16,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.concurrent.Executor;
-import java.util.logging.Logger;
 
 /**
  * @author Rafał Krupiński
@@ -55,8 +54,6 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
         return callDict(offset -> users.getUserChargesMetadata(userId, null, offset, null, fields));
     }
 
-    final private static Logger log = Logger.getLogger(UsersService.class.getName());
-
     @Override
     public Observable<Response<BillCharge>> findAllUserCharges(String userId, Users.SortOrder sortOrder, Instant _from, Instant _to, Collection<String> fields) {
         Instant from = _from.truncatedTo(ChronoUnit.SECONDS);
@@ -70,21 +67,16 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
         Instant actualTo;
 
         do {
-
             Duration duration = min(remainingDuration, Users.MAX_DURATION);
             actualTo = actualFrom.plus(duration);
             Instant finalFrom = actualFrom;
             Instant finalTo = actualTo;
-
-            log.info("" + actualFrom + " + " + duration + " = " + actualTo);
 
             Observable<Response<BillCharge>> observable = call(offset -> users.findAllUserCharges(userId, sortOrder, finalFrom.getEpochSecond(), finalTo.getEpochSecond(), null, offset, null, fields));
             result = (result == null) ? observable : result.concatWith(observable);
 
             actualFrom = actualTo;
             remainingDuration = remainingDuration.minus(duration);
-            log.info("Remains: " + remainingDuration);
-
         } while (remainingDuration.getSeconds() > 0);
 
         return result;
