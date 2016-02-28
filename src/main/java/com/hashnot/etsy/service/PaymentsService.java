@@ -1,14 +1,15 @@
 package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Payments;
+import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.fin.Payment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustmentItem;
-import com.hashnot.etsy.dto.Response;
 import rx.Observable;
 
-import java.util.List;
 import java.util.concurrent.Executor;
+
+import static java.util.Collections.singleton;
 
 /**
  * @author Rafał Krupiński
@@ -26,9 +27,19 @@ public class PaymentsService extends AbstractEtsyService implements IPaymentsSer
      */
     @Override
     public Observable<Response<Payment>> findPayment(
-            List<Long> paymentId
+            Iterable<Long> paymentId
     ) {
         return call(limit -> payments.findPayment(paymentId));
+    }
+
+    /**
+     * Get a Direct Checkout Payment
+     */
+    @Override
+    public Observable<Response<Payment>> findPayment(
+            long paymentId
+    ) {
+        return call(limit -> payments.findPayment(singleton(paymentId)));
     }
 
     /**

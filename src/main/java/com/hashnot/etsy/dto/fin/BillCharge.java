@@ -7,8 +7,6 @@ import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
 
 /**
  * Represents a charge to an Etsy member's account.
@@ -63,13 +61,13 @@ public class BillCharge {
      * Year that the charge was created.
      */
     @JsonProperty("creation_year")
-    private int creationYear;
+    private Integer creationYear;
 
     /**
      * Month that the charge was created.
      */
     @JsonProperty("creation_month")
-    private Month creationMonth;
+    private Integer creationMonth;
 
     /**
      * Time when charge was last modified.
@@ -134,19 +132,19 @@ public class BillCharge {
         this.currencyCode = currencyCode;
     }
 
-    public int getCreationYear() {
+    public Integer getCreationYear() {
         return creationYear;
     }
 
-    public void setCreationYear(int creationYear) {
+    public void setCreationYear(Integer creationYear) {
         this.creationYear = creationYear;
     }
 
-    public Month getCreationMonth() {
+    public Integer getCreationMonth() {
         return creationMonth;
     }
 
-    public void setCreationMonth(Month creationMonth) {
+    public void setCreationMonth(Integer creationMonth) {
         this.creationMonth = creationMonth;
     }
 
@@ -158,18 +156,13 @@ public class BillCharge {
         this.lastModifiedTime = lastModifiedTime;
     }
 
-    @JsonIgnore
-    public LocalDate getCreationDate() {
-        return LocalDate.of(creationYear, creationMonth.getValue(), 1);
-    }
-
     public enum AssociationType {
         Listing,
         Transaction,
         ShippingLabel,
         PostmatesDelivery,
-        campaignInstance,
-        showcaseReservation
+        CampaignInstance,
+        ShowcaseReservation
     }
 
     public enum Type {
@@ -233,11 +226,11 @@ public class BillCharge {
                 return AssociationType.PostmatesDelivery;
 
             case search_ads:
-                return AssociationType.campaignInstance;
+                return AssociationType.CampaignInstance;
 
             case showcase_category:
             case showcase:
-                return AssociationType.showcaseReservation;
+                return AssociationType.ShowcaseReservation;
 
             case wholesale_contract:
             case prolist:

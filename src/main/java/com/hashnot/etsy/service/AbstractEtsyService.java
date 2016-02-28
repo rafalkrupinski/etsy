@@ -1,6 +1,7 @@
 package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.etsy.dto.dict.DictionaryResponse;
 import com.hashnot.u.async.Async;
 import rx.Observable;
 import rx.Observer;
@@ -65,5 +66,29 @@ public class AbstractEtsyService extends Async {
 
     protected static Integer toTimeStamp(Instant time) {
         return time == null ? null : (int) time.getEpochSecond();
+    }
+
+    protected <T> Observable<DictionaryResponse<T>> callDict(ThrowingFunction<Integer, DictionaryResponse<T>> method) {
+        ReplaySubject<DictionaryResponse<T>> result = ReplaySubject.create();
+        Async.call(() -> method.apply(0), executor, new DictionaryResponseHandler<>(result));
+        return result;
+    }
+
+    private static class DictionaryResponseHandler<T> implements BiConsumer<DictionaryResponse<T>, Throwable> {
+        private Observer<DictionaryResponse<T>> observer;
+
+        private DictionaryResponseHandler(Observer<DictionaryResponse<T>> observer) {
+            this.observer = observer;
+        }
+
+        @Override
+        public void accept(DictionaryResponse<T> result, Throwable throwable) {
+            if (throwable != null)
+                observer.onError(throwable);
+            else {
+                observer.onNext(result);
+                observer.onCompleted();
+            }
+        }
     }
 }

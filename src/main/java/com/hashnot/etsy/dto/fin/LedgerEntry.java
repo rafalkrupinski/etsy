@@ -12,11 +12,13 @@ import java.time.Instant;
  * @author Rafał Krupiński
  */
 public class LedgerEntry {
-    public static enum EntryType {
-        PAYMENT, // payment for order (credit)
+    public enum Type {
         BILL_PAYMENT, // payment for etsy bill (debit)
-        REFUND, // refund to customer (debit)
-        DISBURSE2 // withdrawal (debit)
+        DISBURSE2, // withdrawal (debit)
+        MISC_CR, // miscellaneous (credit)
+        PAYMENT, // payment for order (credit)
+        RECOUP, // recoupment (credit)
+        REFUND // refund to customer (debit)
     }
 
     /**
@@ -64,7 +66,7 @@ public class LedgerEntry {
      * bill payment
      */
     @JsonProperty("entry_type")
-    private String entryType;
+    private Type entryType;
     /**
      * Depending on the entry_type, this is the id of the corresponding payment, payment adjustment, or disbursement.
      */
@@ -123,11 +125,11 @@ public class LedgerEntry {
         this.debitAmount = debitAmount;
     }
 
-    public String getEntryType() {
+    public Type getEntryType() {
         return entryType;
     }
 
-    public void setEntryType(String entryType) {
+    public void setEntryType(Type entryType) {
         this.entryType = entryType;
     }
 

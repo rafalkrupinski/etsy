@@ -1,16 +1,15 @@
 package com.hashnot.etsy;
 
+import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.fin.Payment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustmentItem;
-import com.hashnot.etsy.dto.Response;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Rafał Krupiński
@@ -23,7 +22,7 @@ public interface Payments {
     @GET
     @Path("{payment_id}")
     Response<Payment> findPayment(
-            @PathParam("payment_id") List<Long> paymentId
+            @PathParam("payment_id") Iterable<Long> paymentId
     ) throws IOException;
 
     /**
