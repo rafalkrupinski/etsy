@@ -8,6 +8,7 @@ import com.hashnot.etsy.dto.User;
 import com.hashnot.etsy.dto.dict.ChargesMetadata;
 import com.hashnot.etsy.dto.dict.DictionaryResponse;
 import com.hashnot.etsy.dto.fin.BillCharge;
+import com.hashnot.etsy.dto.fin.BillPayment;
 import com.hashnot.etsy.dto.fin.BillingOverview;
 import rx.Observable;
 
@@ -84,6 +85,11 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
 
     private static Duration min(Duration a, Duration b) {
         return a.compareTo(b) <= 0 ? a : b;
+    }
+
+    @Override
+    public Observable<Response<BillPayment>> findAllUserPayments(String userId, Users.SortOrder sortOrder, Instant from, Instant to, Collection<String> fields) {
+        return call(offset -> users.findAllUserPayments(userId, sortOrder, toTimeStamp(from), toTimeStamp(to), null, offset, null, fields));
     }
 }
 

@@ -132,20 +132,20 @@ public class BillCharge {
         this.currencyCode = currencyCode;
     }
 
-    public Integer getCreationYear() {
-        return creationYear;
-    }
-
-    public void setCreationYear(Integer creationYear) {
-        this.creationYear = creationYear;
-    }
-
     public Integer getCreationMonth() {
         return creationMonth;
     }
 
     public void setCreationMonth(Integer creationMonth) {
         this.creationMonth = creationMonth;
+    }
+
+    public Integer getCreationYear() {
+        return creationYear;
+    }
+
+    public void setCreationYear(Integer creationYear) {
+        this.creationYear = creationYear;
     }
 
     public Instant getLastModifiedTime() {

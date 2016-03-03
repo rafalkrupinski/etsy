@@ -8,6 +8,7 @@ import com.hashnot.etsy.dto.User;
 import com.hashnot.etsy.dto.dict.ChargesMetadata;
 import com.hashnot.etsy.dto.dict.DictionaryResponse;
 import com.hashnot.etsy.dto.fin.BillCharge;
+import com.hashnot.etsy.dto.fin.BillPayment;
 import com.hashnot.etsy.dto.fin.BillingOverview;
 import rx.Observable;
 
@@ -63,6 +64,18 @@ public interface IUsersService {
      * @see Users#findAllUserCharges(String, Users.SortOrder, long, long, Integer, Integer, Integer, Collection)
      */
     Observable<Response<BillCharge>> findAllUserCharges(
+            String userId,
+            Users.SortOrder sortOrder,
+            Instant from,
+            Instant to,
+
+            Collection<String> fields
+    );
+
+    /**
+     * @see Users#findAllUserPayments(String, Users.SortOrder, long, long, Integer, Integer, Integer, Collection)
+     */
+    Observable<Response<BillPayment>> findAllUserPayments(
             String userId,
             Users.SortOrder sortOrder,
             Instant from,

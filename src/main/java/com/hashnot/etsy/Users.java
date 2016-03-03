@@ -7,6 +7,7 @@ import com.hashnot.etsy.dto.User;
 import com.hashnot.etsy.dto.dict.ChargesMetadata;
 import com.hashnot.etsy.dto.dict.DictionaryResponse;
 import com.hashnot.etsy.dto.fin.BillCharge;
+import com.hashnot.etsy.dto.fin.BillPayment;
 import com.hashnot.etsy.dto.fin.BillingOverview;
 
 import javax.ws.rs.GET;
@@ -22,6 +23,10 @@ import java.util.Collection;
  */
 @Path("v2")
 public interface Users {
+    enum SortOrder {
+        up, down
+    }
+
     /**
      * Maximum diff between from and to when calling findAllUserCharges
      */
@@ -111,7 +116,21 @@ public interface Users {
             @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 
-    enum SortOrder {
-        up, down
-    }
+    /**
+     * Retrieves a set of BillPayment objects associated to a User
+     */
+    @GET
+    @Path("/users/{userId}/payments")
+    Response<BillPayment> findAllUserPayments(
+            @PathParam("userId") String userId,
+            @QueryParam("sort_order") SortOrder sortOrder,
+            @QueryParam("min_created") long from,
+            @QueryParam("max_created") long to,
+
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") Integer offset,
+            @QueryParam("page") Integer page,
+
+            @QueryParam("fields") Collection<String> fields
+    ) throws IOException;
 }
