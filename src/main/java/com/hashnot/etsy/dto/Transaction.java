@@ -474,10 +474,11 @@ public class Transaction implements Comparable<Transaction> {
     public Transaction() {
     }
 
-    public Transaction(Instant paidTime, BigDecimal price, BigDecimal quantity, long receiptId, long listingId) {
+    public Transaction(Instant paidTime, BigDecimal price, BigDecimal quantity, long transactionId, long receiptId, long listingId) {
         this.paidTime = paidTime;
         this.price = price;
         this.quantity = quantity;
+        this.transactionId = transactionId;
         this.receiptId = receiptId;
         this.listingId = listingId;
     }
