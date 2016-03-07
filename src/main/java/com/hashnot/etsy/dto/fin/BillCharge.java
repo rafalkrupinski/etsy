@@ -239,4 +239,17 @@ public class BillCharge {
                 return null;
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("BillCharge{");
+        sb.append("billChargeId=").append(billChargeId);
+        sb.append(", creationTime=").append(creationTime);
+        sb.append(", type=").append(type);
+        sb.append(", typeId=").append(typeId);
+        sb.append(", amount=").append(amount);
+        sb.append(", currencyCode='").append(currencyCode).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -14,7 +14,7 @@ public class Ledger {
      * The ledger's numeric ID.
      */
     @JsonProperty("ledger_id")
-    private long ledger_id;
+    private long ledgerId;
 
     /**
      * The shop's numeric ID.
@@ -39,12 +39,12 @@ public class Ledger {
     @JsonDeserialize(using = UnixTimestampDeserializer.class)
     private Instant updateDate;
 
-    public long getLedger_id() {
-        return ledger_id;
+    public long getLedgerId() {
+        return ledgerId;
     }
 
-    public void setLedger_id(long ledger_id) {
-        this.ledger_id = ledger_id;
+    public void setLedgerId(long ledgerId) {
+        this.ledgerId = ledgerId;
     }
 
     public String getShopId() {
