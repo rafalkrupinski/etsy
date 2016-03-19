@@ -635,4 +635,8 @@ public class Receipt {
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
     }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 }

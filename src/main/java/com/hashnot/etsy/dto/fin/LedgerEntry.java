@@ -67,17 +67,20 @@ public class LedgerEntry {
      */
     @JsonProperty("entry_type")
     private Type entryType;
+
     /**
      * Depending on the entry_type, this is the id of the corresponding payment, payment adjustment, or disbursement.
      */
     @JsonProperty("reference_id")
     private Long referenceId;
+
     /**
      * The amount of money in the shop's ledger the moment after this entry was applied.
      */
     @JsonProperty("running_balance")
     @JsonDeserialize(using = PennyDeserializer.class)
     private BigDecimal runningBalance;
+
     /**
      * The date and time the ledger entry was created in Epoch seconds.
      */
