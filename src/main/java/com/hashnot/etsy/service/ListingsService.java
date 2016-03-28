@@ -46,7 +46,7 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
             Boolean isCustomizable,
             Boolean nonTaxable,
             ListingImage image,
-            String state,
+            Listing.Status state,
             Integer processingMin,
             Integer processingMax,
             Long categoryId,
@@ -103,7 +103,7 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
             Boolean renew,
             Long shippingTemplateId,
             Long shopSectionId,
-            String state,
+            Listing.Status state,
             Iterable<Long> imageIds,
             Boolean customizable,
             BigDecimal weight,
@@ -176,7 +176,7 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
 
             Iterable<String> includes,
             Iterable<String> fields
-            ) {
+    ) {
         return call(offset -> listings.findAllListingTransactions(listingId, null, offset, includes,fields));
     }
 }

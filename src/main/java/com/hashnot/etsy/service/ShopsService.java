@@ -1,7 +1,9 @@
 package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.Shops;
-import com.hashnot.etsy.dto.*;
+import com.hashnot.etsy.dto.Listing;
+import com.hashnot.etsy.dto.Receipt;
+import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.fin.LedgerEntry;
 import com.hashnot.etsy.dto.fin.Payment;
 import rx.Observable;
@@ -24,7 +26,9 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
     @Override
     public Observable<Response<Listing>> findAllShopListings(String shopId, Collection<String> includes, Collection<String> fields) {
         Observable<Response<Listing>> result = null;
-        for (Listing.AvailableState state : Listing.AvailableState.values()) {
+        for (Listing.Status state : Listing.Status.values()) {
+            if (!state.listable)
+                continue;
             Observable<Response<Listing>> observable = call(offset -> shops.findAllShopListings(shopId, state.name(), null, offset, null, includes, fields)).filter(r -> r.getCount() != 0);
             if (result != null)
                 result = result.concatWith(observable);

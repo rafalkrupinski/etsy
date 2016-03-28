@@ -16,8 +16,24 @@ public class Listing {
     /**
      * states available for querying
      */
-    public enum AvailableState {
-        active, inactive, expired
+    public enum Status {
+        active(true),
+
+        // inactive
+        edit(false),
+        expired(true),
+        inactive(true),
+        removed(false),
+        sold_out(false);
+
+        /**
+         * Able to query all listings with listable status
+         */
+        final public boolean listable;
+
+        Status(boolean listable) {
+            this.listable = listable;
+        }
     }
 
     public enum association {
@@ -28,7 +44,7 @@ public class Listing {
     private long listingId;
 
     @JsonProperty("state")
-    private String state;
+    private Status state;
 
     @JsonProperty("user_id")
     private long userId;
@@ -213,7 +229,7 @@ public class Listing {
         return listingId;
     }
 
-    public String getState() {
+    public Status getState() {
         return state;
     }
 
@@ -421,7 +437,7 @@ public class Listing {
         this.shopSectionId = shopSectionId;
     }
 
-    public void setState(String state) {
+    public void setState(Status state) {
         this.state = state;
     }
 
