@@ -1,7 +1,10 @@
 package com.hashnot.etsy.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -13,6 +16,26 @@ public class Shop {
 
     @JsonProperty("shop_name")
     private String shopName;
+
+    @JsonProperty("user_id")
+    private long userId;
+
+    @JsonProperty("creation_tsz")
+    @JsonDeserialize(using = UnixTimestampDeserializer.class)
+    private Instant creationTime;
+
+    private String title;
+
+    private String announcement;
+
+    @JsonProperty("currency_code")
+    private String currencyCode;
+
+    @JsonProperty("is_vacation")
+    private boolean onVacation;
+
+    @JsonProperty("vacation_message")
+    private String vacationMessage;
 
     @JsonProperty("listing_active_count")
     private Integer listingActiveCount;
@@ -86,5 +109,53 @@ public class Shop {
 
     protected boolean equals(Shop shop) {
         return shop.shopId == shopId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Instant getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Instant creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAnnouncement() {
+        return announcement;
+    }
+
+    public void setAnnouncement(String announcement) {
+        this.announcement = announcement;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public boolean isOnVacation() {
+        return onVacation;
+    }
+
+    public void setOnVacation(boolean onVacation) {
+        this.onVacation = onVacation;
     }
 }
