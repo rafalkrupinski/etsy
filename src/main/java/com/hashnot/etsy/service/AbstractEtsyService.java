@@ -15,7 +15,7 @@ import java.util.function.Function;
 /**
  * @author Rafał Krupiński
  */
-public class AbstractEtsyService extends Async {
+class AbstractEtsyService extends Async {
     protected Executor executor;
 
     public AbstractEtsyService(Executor executor) {
@@ -28,7 +28,7 @@ public class AbstractEtsyService extends Async {
 
     protected <T> Observable<Response<T>> call(ThrowingFunction<Integer, Response<T>> method) {
         ReplaySubject<Response<T>> result = ReplaySubject.create();
-        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result));
+        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result, ___ASYNC_CALL___()));
         return result;
     }
 
@@ -37,25 +37,34 @@ public class AbstractEtsyService extends Async {
         private ThrowingFunction<Integer, Response<T>> method;
         private Observer<Response<T>> observer;
         private int count = 0;
+        private final StackTraceElement[] stackTrace;
 
-        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer) {
+        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer, StackTraceElement[] stackTrace) {
             this.executor = executor;
             this.method = method;
             this.observer = observer;
+            this.stackTrace = stackTrace;
         }
 
         @Override
         public void accept(Response<T> result, Throwable throwable) {
-            if (throwable != null)
+            if (throwable != null) {
+                Async.updateStackTrace(throwable, stackTrace);
                 observer.onError(throwable);
-            else {
-                observer.onNext(result);
-                count += result.getResults().size();
+            } else {
+                try {
+                    count += result.getResults().size();
 
-                if (result.getCount() > count)
-                    Async.call(() -> method.apply(count), executor, this);
-                else
-                    observer.onCompleted();
+                    if (result.getCount() > count) {
+                        Async.call(() -> method.apply(count), executor, this);
+                        observer.onNext(result);
+                    } else
+                        observer.onNext(result);
+                        observer.onCompleted();
+                } catch (Exception e) {
+                    Async.updateStackTrace(throwable, stackTrace);
+                    observer.onError(e);
+                }
             }
         }
     }
