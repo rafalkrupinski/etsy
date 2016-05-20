@@ -31,14 +31,14 @@ public interface IUsersService {
      * @see Users#findAllUserShippingProfiles(String)
      */
     Observable<Response<ShippingTemplate>> findAllUserShippingProfiles(
-            String userId
+            long userId
     );
 
     /**
      * @see Users#findAllUserShops(String, String, Iterable, Iterable)
      */
     Observable<Response<Shop>> findAllUserShops(
-            String userId,
+            long userId,
             Iterable<String> fields,
             Iterable<String> includes
     );
@@ -47,7 +47,7 @@ public interface IUsersService {
      * @see Users#getUserBillingOverview(String, Integer, Integer, Integer, Collection)
      */
     Observable<Response<BillingOverview>> getUserBillingOverview(
-            String userId,
+            long userId,
             Collection<String> fields
     );
 
@@ -55,7 +55,7 @@ public interface IUsersService {
      * @see Users#getUserChargesMetadata(String, Integer, Integer, Integer, Collection)
      */
     Observable<DictionaryResponse<ChargesMetadata>> getUserChargesMetadata(
-            String userId,
+            long userId,
 
             Collection<String> fields
     );
@@ -64,7 +64,7 @@ public interface IUsersService {
      * @see Users#findAllUserCharges(String, Users.SortOrder, long, long, Integer, Integer, Integer, Collection)
      */
     Observable<Response<BillCharge>> findAllUserCharges(
-            String userId,
+            long userId,
             Users.SortOrder sortOrder,
             Instant from,
             Instant to,
@@ -76,7 +76,7 @@ public interface IUsersService {
      * @see Users#findAllUserPayments(String, Users.SortOrder, long, long, Integer, Integer, Integer, Collection)
      */
     Observable<Response<BillPayment>> findAllUserPayments(
-            String userId,
+            long userId,
             Users.SortOrder sortOrder,
             Instant from,
             Instant to,

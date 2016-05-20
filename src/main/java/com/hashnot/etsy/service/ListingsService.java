@@ -25,7 +25,7 @@ public class ListingsService extends AbstractEtsyService implements IListingsSer
 
     @Override
     public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, Iterable<String> includes, Iterable<String> fields) {
-        return call(offset -> listings.getListing(listingIds, includes, fields, null, offset));
+        return call(offset -> listings.getListing(listingIds, null, offset, includes, fields));
     }
 
     @Override

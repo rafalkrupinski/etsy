@@ -28,21 +28,22 @@ public interface Shops {
     @GET
     @Path("/shops/{shopId}/receipts")
     Response<Shop> findAllShopReceipts(
-            @QueryParam("api_key") String apiKey,
-            @PathParam("shopId") String user
+            @PathParam("shopId") long shopId,
+            @QueryParam("api_key") String apiKey
     ) throws IOException;
 
     @GET
     @Path("/shops/{shopId}/sections")
     Response<ShopSection> findAllShopSections(
-            @PathParam("shopId") String shopId
+            @PathParam("shopId") long shopId
     ) throws IOException;
 
     @GET
     @Path("/shops/{shopId}/listings/{status}")
     Response<Listing> findAllShopListings(
-            @PathParam("shopId") String shopId,
+            @PathParam("shopId") long shopId,
             @PathParam("status") String status,
+
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page,
@@ -53,7 +54,8 @@ public interface Shops {
     @GET
     @Path("/shops/{shopId}/receipts")
     Response<Receipt> findAllShopReceipts(
-            @PathParam("shopId") String shopId,
+            @PathParam("shopId") long shopId,
+
             @QueryParam("min_created") Integer createdFrom,
             @QueryParam("max_created") Integer createdTo,
             @QueryParam("was_paid") Boolean paid,
@@ -73,7 +75,8 @@ public interface Shops {
     @GET
     @Path("/shops/{shopId}/ledger/")
     Response<Ledger> findLedger(
-            @PathParam("shopId") String shopId,
+            @PathParam("shopId") long shopId,
+
             @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 
@@ -83,9 +86,11 @@ public interface Shops {
     @GET
     @Path("/shops/{shopId}/ledger/entries")
     Response<LedgerEntry> findLedgerEntries(
-            @PathParam("shopId") String shopId,
+            @PathParam("shopId") long shopId,
+
             @QueryParam("min_created") Integer minCreated,
             @QueryParam("max_created") Integer maxCreated,
+
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
             @QueryParam("page") Integer page,
@@ -99,8 +104,8 @@ public interface Shops {
     @GET
     @Path("/shops/{shop_id}/receipts/{receipt_id}/payments")
     Response<Payment> findShopPaymentByReceipt(
+            @PathParam("shop_id") long shopId,
             @PathParam("receipt_id") long receiptId,
-            @PathParam("shop_id") String shopId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -115,12 +120,13 @@ public interface Shops {
     @GET
     @Path("/shops/{shop_id}/listings/featured")
     Response<Listing> findAllShopListingsFeatured(
-            @PathParam("shop_id") String shopId,
+            @PathParam("shop_id") long shopId,
 
-            @QueryParam("includes") Collection<String> includes,
-            @QueryParam("fields") Collection<String> fields,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
-            @QueryParam("page") Integer page
+            @QueryParam("page") Integer page,
+
+            @QueryParam("includes") Collection<String> includes,
+            @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 }

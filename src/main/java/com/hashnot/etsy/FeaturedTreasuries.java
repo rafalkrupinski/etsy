@@ -21,9 +21,10 @@ public interface FeaturedTreasuries {
     @GET
     @Path("/featured_treasuries/listings")
     Response<Listing> findAllFeaturedListings(
+            @QueryParam("region") String region,
+
             @QueryParam("includes") List<String> includes,
             @QueryParam("limit") Integer limit,
-            @QueryParam("offset") Integer offset,
-            @QueryParam("region") String region
+            @QueryParam("offset") Integer offset
     ) throws IOException;
 }

@@ -24,7 +24,7 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
     }
 
     @Override
-    public Observable<Response<Listing>> findAllShopListings(String shopId, Collection<String> includes, Collection<String> fields) {
+    public Observable<Response<Listing>> findAllShopListings(long shopId, Collection<String> includes, Collection<String> fields) {
         Observable<Response<Listing>> result = null;
         for (Listing.Status state : Listing.Status.values()) {
             if (!state.listable)
@@ -41,7 +41,7 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
 
     @Override
     public Observable<Response<Receipt>> findAllShopReceipts(
-            String shopId,
+            long shopId,
             Instant createdFrom,
             Instant createdTo,
             Boolean paid,
@@ -57,7 +57,7 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
      */
     @Override
     public Observable<Response<LedgerEntry>> findLedgerEntries(
-            String shopId,
+            long shopId,
             Instant minCreated,
             Instant maxCreated,
             Integer limit,
@@ -71,20 +71,20 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
      */
     @Override
     public Observable<Response<Listing>> findAllShopListingsFeatured(
-            String shopId,
+            long shopId,
             Collection<String> includes,
             Collection<String> fields
     ) {
-        return call(offset -> shops.findAllShopListingsFeatured(shopId, includes, fields, null, offset, null));
+        return call(offset -> shops.findAllShopListingsFeatured(shopId, null, offset, null, includes, fields));
     }
 
     @Override
     public Observable<Response<Payment>> findShopPaymentByReceipt(
+            long shopId,
             long receiptId,
-            String shopId,
             Collection<String> fields
     ) {
-        return call(offset -> shops.findShopPaymentByReceipt(receiptId, shopId, null, offset, null, fields));
+        return call(offset -> shops.findShopPaymentByReceipt(shopId, receiptId, null, offset, null, fields));
     }
 
 }

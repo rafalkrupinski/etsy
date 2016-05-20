@@ -26,7 +26,7 @@ public class ReceiptsService extends AbstractEtsyService implements IReceiptsSer
             Collection<String> includes,
             Collection<String> fields
     ) {
-        return call(offset -> receipts.getReceipt(receiptsIds, includes, fields, offset));
+        return call(offset -> receipts.getReceipt(receiptsIds, offset, includes, fields));
     }
 
     public Observable<Response<Transaction>> findAllReceiptTransactions(

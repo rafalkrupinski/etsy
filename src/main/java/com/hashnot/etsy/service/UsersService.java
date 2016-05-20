@@ -32,31 +32,31 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
 
     @Override
     public Observable<Response<User>> getUser(String user, Iterable<String> includes) {
-        return call(p -> users.getUser(null, user, includes));
+        return call(p -> users.getUser(user, null, includes));
     }
 
     @Override
-    public Observable<Response<ShippingTemplate>> findAllUserShippingProfiles(String userId) {
+    public Observable<Response<ShippingTemplate>> findAllUserShippingProfiles(long userId) {
         return call(p -> users.findAllUserShippingProfiles(userId));
     }
 
     @Override
-    public Observable<Response<Shop>> findAllUserShops(String userId, Iterable<String> fields, Iterable<String> includes) {
-        return call(p -> users.findAllUserShops(null, userId, fields, includes));
+    public Observable<Response<Shop>> findAllUserShops(long userId, Iterable<String> fields, Iterable<String> includes) {
+        return call(p -> users.findAllUserShops(userId, fields, includes));
     }
 
     @Override
-    public Observable<Response<BillingOverview>> getUserBillingOverview(String userId, Collection<String> fields) {
+    public Observable<Response<BillingOverview>> getUserBillingOverview(long userId, Collection<String> fields) {
         return call(offset -> users.getUserBillingOverview(userId, null, offset, null, fields));
     }
 
     @Override
-    public Observable<DictionaryResponse<ChargesMetadata>> getUserChargesMetadata(String userId, Collection<String> fields) {
+    public Observable<DictionaryResponse<ChargesMetadata>> getUserChargesMetadata(long userId, Collection<String> fields) {
         return callDict(offset -> users.getUserChargesMetadata(userId, null, offset, null, fields));
     }
 
     @Override
-    public Observable<Response<BillCharge>> findAllUserCharges(String userId, Users.SortOrder sortOrder, Instant _from, Instant _to, Collection<String> fields) {
+    public Observable<Response<BillCharge>> findAllUserCharges(long userId, Users.SortOrder sortOrder, Instant _from, Instant _to, Collection<String> fields) {
         Instant from = _from.truncatedTo(ChronoUnit.SECONDS);
         Instant to = _to.truncatedTo(ChronoUnit.SECONDS);
 
@@ -88,7 +88,7 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
     }
 
     @Override
-    public Observable<Response<BillPayment>> findAllUserPayments(String userId, Users.SortOrder sortOrder, Instant from, Instant to, Collection<String> fields) {
+    public Observable<Response<BillPayment>> findAllUserPayments(long userId, Users.SortOrder sortOrder, Instant from, Instant to, Collection<String> fields) {
         return call(offset -> users.findAllUserPayments(userId, sortOrder, toTimeStamp(from), toTimeStamp(to), null, offset, null, fields));
     }
 }

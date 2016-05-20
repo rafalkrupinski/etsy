@@ -38,8 +38,21 @@ public interface Users {
     @GET
     @Path("/users/{userId}")
     Response<User> getUser(
+            @PathParam("userId") String userId,
+
             @QueryParam("api_key") String apiKey,
-            @PathParam("userId") String user,
+
+            @QueryParam("includes") Iterable<String> includes
+    ) throws IOException;
+
+    /**
+     * Retrieves a User by id.
+     */
+    @GET
+    @Path("/users/{userId}")
+    Response<User> getUser(
+            @PathParam("userId") long userId,
+
             @QueryParam("includes") Iterable<String> includes
     ) throws IOException;
 
@@ -49,7 +62,7 @@ public interface Users {
     @GET
     @Path("/users/{userId}/shipping/templates")
     Response<ShippingTemplate> findAllUserShippingProfiles(
-            @PathParam("userId") String userId
+            @PathParam("userId") long userId
     ) throws IOException;
 
     /**
@@ -58,8 +71,8 @@ public interface Users {
     @GET
     @Path("/users/{userId}/shops")
     Response<Shop> findAllUserShops(
-            @QueryParam("api_key") String apiKey,
-            @PathParam("userId") String userId,
+            @PathParam("userId") long userId,
+
             @QueryParam("fields") Iterable<String> fields,
             @QueryParam("includes") Iterable<String> includes
     ) throws IOException;
@@ -70,7 +83,7 @@ public interface Users {
     @GET
     @Path("/users/{userId}/billing/overview")
     Response<BillingOverview> getUserBillingOverview(
-            @PathParam("userId") String userId,
+            @PathParam("userId") long userId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -85,7 +98,7 @@ public interface Users {
     @GET
     @Path("/users/{userId}/charges/meta")
     DictionaryResponse<ChargesMetadata> getUserChargesMetadata(
-            @PathParam("userId") String userId,
+            @PathParam("userId") long userId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -104,7 +117,8 @@ public interface Users {
     @GET
     @Path("/users/{userId}/charges")
     Response<BillCharge> findAllUserCharges(
-            @PathParam("userId") String userId,
+            @PathParam("userId") long userId,
+
             @QueryParam("sort_order") SortOrder sortOrder,
             @QueryParam("min_created") long from,
             @QueryParam("max_created") long to,
@@ -122,7 +136,8 @@ public interface Users {
     @GET
     @Path("/users/{userId}/payments")
     Response<BillPayment> findAllUserPayments(
-            @PathParam("userId") String userId,
+            @PathParam("userId") long userId,
+
             @QueryParam("sort_order") SortOrder sortOrder,
             @QueryParam("min_created") long from,
             @QueryParam("max_created") long to,

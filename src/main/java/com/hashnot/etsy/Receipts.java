@@ -23,9 +23,11 @@ public interface Receipts {
     @Path("/{receipt_id}")
     Response<Receipt> getReceipt(
             @PathParam("receipt_id") Collection<Long> receiptsIds,
+
+            @QueryParam("offset") Integer offset,
+
             @QueryParam("includes") Collection<String> includes,
-            @QueryParam("fields") Collection<String> fields,
-            @QueryParam("offset") Integer offset
+            @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 
     /**

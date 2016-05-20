@@ -62,10 +62,12 @@ public interface Listings {
     @Path("{listingId}.json")
     Response<Listing> getListing(
             @PathParam("listingId") Iterable<Long> listingId,
-            @QueryParam("includes") Iterable<String> includes,
-            @QueryParam("fields") Iterable<String> fields,
+
             @QueryParam("limit") Integer limit,
-            @QueryParam("offset") Integer offset
+            @QueryParam("offset") Integer offset,
+
+            @QueryParam("includes") Iterable<String> includes,
+            @QueryParam("fields") Iterable<String> fields
     ) throws IOException;
 
     @PUT
@@ -137,6 +139,7 @@ public interface Listings {
     @Path("/{listing_id}/transactions")
     Response<Transaction> findAllListingTransactions(
             @PathParam("listing_id") long listingId,
+
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
 

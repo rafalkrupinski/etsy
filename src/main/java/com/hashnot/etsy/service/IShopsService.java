@@ -12,10 +12,14 @@ import java.util.Collection;
  * @author Rafał Krupiński
  */
 public interface IShopsService {
-    Observable<Response<Listing>> findAllShopListings(String shopId, Collection<String> includes, Collection<String> fields);
+    Observable<Response<Listing>> findAllShopListings(
+            long shopId,
+            Collection<String> includes,
+            Collection<String> fields
+    );
 
     Observable<Response<Receipt>> findAllShopReceipts(
-            String shopId,
+            long shopId,
             Instant createdFrom,
             Instant createdTo,
             Boolean paid,
@@ -25,7 +29,7 @@ public interface IShopsService {
     );
 
     Observable<Response<LedgerEntry>> findLedgerEntries(
-            String shopId,
+            long shopId,
             Instant minCreated,
             Instant maxCreated,
             Integer limit,
@@ -33,14 +37,14 @@ public interface IShopsService {
     );
 
     Observable<Response<Listing>> findAllShopListingsFeatured(
-            String shopId,
+            long shopId,
             Collection<String> includes,
             Collection<String> fields
     );
 
     Observable<Response<Payment>> findShopPaymentByReceipt(
+            long shopId,
             long receiptId,
-            String shopId,
             Collection<String> fields
     );
 }
