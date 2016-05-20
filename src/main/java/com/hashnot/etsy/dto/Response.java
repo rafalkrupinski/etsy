@@ -47,4 +47,9 @@ public class Response<T> {
     public Pagination getPagination() {
         return pagination;
     }
+
+    @Override
+    public String toString() {
+        return "Response[" + type + " " + count + "]";
+    }
 }
