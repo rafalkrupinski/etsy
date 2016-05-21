@@ -16,7 +16,7 @@ import java.util.function.Function;
  * @author Rafał Krupiński
  */
 class AbstractEtsyService extends Async {
-    protected Executor executor;
+    private Executor executor;
 
     public AbstractEtsyService(Executor executor) {
         this.executor = executor;
@@ -28,7 +28,7 @@ class AbstractEtsyService extends Async {
 
     protected <T> Observable<Response<T>> call(ThrowingFunction<Integer, Response<T>> method) {
         ReplaySubject<Response<T>> result = ReplaySubject.create();
-        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result, ___ASYNC_CALL___()));
+        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result));
         return result;
     }
 
@@ -37,19 +37,16 @@ class AbstractEtsyService extends Async {
         private ThrowingFunction<Integer, Response<T>> method;
         private Observer<Response<T>> observer;
         private int count = 0;
-        private final StackTraceElement[] stackTrace;
 
-        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer, StackTraceElement[] stackTrace) {
+        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer) {
             this.executor = executor;
             this.method = method;
             this.observer = observer;
-            this.stackTrace = stackTrace;
         }
 
         @Override
         public void accept(Response<T> result, Throwable throwable) {
             if (throwable != null) {
-                Async.updateStackTrace(throwable, stackTrace);
                 observer.onError(throwable);
             } else {
                 try {
@@ -62,7 +59,6 @@ class AbstractEtsyService extends Async {
                         observer.onNext(result);
                         observer.onCompleted();
                 } catch (Exception e) {
-                    Async.updateStackTrace(throwable, stackTrace);
                     observer.onError(e);
                 }
             }
