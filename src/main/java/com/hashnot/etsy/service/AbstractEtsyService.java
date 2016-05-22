@@ -55,9 +55,10 @@ class AbstractEtsyService extends Async {
                     if (result.getCount() > count) {
                         Async.call(() -> method.apply(count), executor, this);
                         observer.onNext(result);
-                    } else
+                    } else {
                         observer.onNext(result);
                         observer.onCompleted();
+                    }
                 } catch (Exception e) {
                     observer.onError(e);
                 }
