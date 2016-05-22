@@ -46,10 +46,15 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
             Instant createdTo,
             Boolean paid,
             Boolean shipped,
-            Integer limit, Collection<String> includes,
+
+            Integer limit,
+
+            Collection<String> includes,
             Collection<String> fields
     ) {
-        return call(offset -> shops.findAllShopReceipts(shopId, toTimeStamp(createdFrom), toTimeStamp(createdTo), paid, shipped, limit, offset, null, includes, fields));
+        Integer from = toTimeStamp(createdFrom);
+        Integer to = toTimeStamp(createdTo);
+        return call(offset -> shops.findAllShopReceipts(shopId, from, to, paid, shipped, limit, offset, null, includes, fields));
     }
 
     /**
@@ -63,7 +68,9 @@ public class ShopsService extends AbstractEtsyService implements IShopsService {
             Integer limit,
             Collection<String> fields
     ) {
-        return call(offset -> shops.findLedgerEntries(shopId, toTimeStamp(minCreated), toTimeStamp(maxCreated), limit, offset, null, fields));
+        Integer from = toTimeStamp(minCreated);
+        Integer to = toTimeStamp(maxCreated);
+        return call(offset -> shops.findLedgerEntries(shopId, from, to, limit, offset, null, fields));
     }
 
     /**
