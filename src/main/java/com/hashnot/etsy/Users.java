@@ -36,9 +36,9 @@ public interface Users {
      * Retrieves a User by id.
      */
     @GET
-    @Path("/users/{userId}")
+    @Path("/users/{user_id}")
     Response<User> getUser(
-            @PathParam("userId") String userId,
+            @PathParam("user_id") String userId,
 
             @QueryParam("api_key") String apiKey,
 
@@ -49,9 +49,9 @@ public interface Users {
      * Retrieves a User by id.
      */
     @GET
-    @Path("/users/{userId}")
+    @Path("/users/{user_id}")
     Response<User> getUser(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("includes") Iterable<String> includes
     ) throws IOException;
@@ -60,18 +60,18 @@ public interface Users {
      * Retrieves a set of ShippingTemplate objects associated to a User.
      */
     @GET
-    @Path("/users/{userId}/shipping/templates")
+    @Path("/users/{user_id}/shipping/templates")
     Response<ShippingTemplate> findAllUserShippingProfiles(
-            @PathParam("userId") long userId
+            @PathParam("user_id") long userId
     ) throws IOException;
 
     /**
      * Retrieves a set of Shop objects associated to a User.
      */
     @GET
-    @Path("/users/{userId}/shops")
+    @Path("/users/{user_id}/shops")
     Response<Shop> findAllUserShops(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("fields") Iterable<String> fields,
             @QueryParam("includes") Iterable<String> includes
@@ -81,9 +81,9 @@ public interface Users {
      * Retrieves the user's current balance.
      */
     @GET
-    @Path("/users/{userId}/billing/overview")
+    @Path("/users/{user_id}/billing/overview")
     Response<BillingOverview> getUserBillingOverview(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -96,9 +96,9 @@ public interface Users {
      * Metadata for the set of BillCharges objects associated to a User
      */
     @GET
-    @Path("/users/{userId}/charges/meta")
+    @Path("/users/{user_id}/charges/meta")
     DictionaryResponse<ChargesMetadata> getUserChargesMetadata(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -115,9 +115,9 @@ public interface Users {
      * @param to open upper bound of the BillCharge creation time
      */
     @GET
-    @Path("/users/{userId}/charges")
+    @Path("/users/{user_id}/charges")
     Response<BillCharge> findAllUserCharges(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("sort_order") SortOrder sortOrder,
             @QueryParam("min_created") long from,
@@ -134,9 +134,9 @@ public interface Users {
      * Retrieves a set of BillPayment objects associated to a User
      */
     @GET
-    @Path("/users/{userId}/payments")
+    @Path("/users/{user_id}/payments")
     Response<BillPayment> findAllUserPayments(
-            @PathParam("userId") long userId,
+            @PathParam("user_id") long userId,
 
             @QueryParam("sort_order") SortOrder sortOrder,
             @QueryParam("min_created") long from,

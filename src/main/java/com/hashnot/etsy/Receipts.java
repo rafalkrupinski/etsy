@@ -34,9 +34,9 @@ public interface Receipts {
      * Retrieves a set of Transaction objects associated to a Receipt
      */
     @GET
-    @Path("/{receiptId}/transactions")
+    @Path("/{receipt_id}/transactions")
     Response<Transaction> findAllReceiptTransactions(
-            @PathParam("receiptId") long receiptId,
+            @PathParam("receipt_id") long receiptId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,

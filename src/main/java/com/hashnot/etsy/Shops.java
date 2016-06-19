@@ -26,22 +26,22 @@ public interface Shops {
     ) throws IOException;
 
     @GET
-    @Path("/shops/{shopId}/receipts")
+    @Path("/shops/{shop_id}/receipts")
     Response<Shop> findAllShopReceipts(
-            @PathParam("shopId") long shopId,
+            @PathParam("shop_id") long shopId,
             @QueryParam("api_key") String apiKey
     ) throws IOException;
 
     @GET
-    @Path("/shops/{shopId}/sections")
+    @Path("/shops/{shop_id}/sections")
     Response<ShopSection> findAllShopSections(
-            @PathParam("shopId") long shopId
+            @PathParam("shop_id") long shopId
     ) throws IOException;
 
     @GET
-    @Path("/shops/{shopId}/listings/{status}")
+    @Path("/shops/{shop_id}/listings/{status}")
     Response<Listing> findAllShopListings(
-            @PathParam("shopId") long shopId,
+            @PathParam("shop_id") long shopId,
             @PathParam("status") String status,
 
             @QueryParam("limit") Integer limit,
@@ -52,9 +52,9 @@ public interface Shops {
     ) throws IOException;
 
     @GET
-    @Path("/shops/{shopId}/receipts")
+    @Path("/shops/{shop_id}/receipts")
     Response<Receipt> findAllShopReceipts(
-            @PathParam("shopId") long shopId,
+            @PathParam("shop_id") long shopId,
 
             @QueryParam("min_created") Integer createdFrom,
             @QueryParam("max_created") Integer createdTo,
@@ -73,9 +73,9 @@ public interface Shops {
      * Get a Shop Payment Account Ledger
      */
     @GET
-    @Path("/shops/{shopId}/ledger/")
+    @Path("/shops/{shop_id}/ledger/")
     Response<Ledger> findLedger(
-            @PathParam("shopId") long shopId,
+            @PathParam("shop_id") long shopId,
 
             @QueryParam("fields") Collection<String> fields
     ) throws IOException;
@@ -84,9 +84,9 @@ public interface Shops {
      * Get a Shop Payment Account Ledger's Entries
      */
     @GET
-    @Path("/shops/{shopId}/ledger/entries")
+    @Path("/shops/{shop_id}/ledger/entries")
     Response<LedgerEntry> findLedgerEntries(
-            @PathParam("shopId") long shopId,
+            @PathParam("shop_id") long shopId,
 
             @QueryParam("min_created") Integer minCreated,
             @QueryParam("max_created") Integer maxCreated,

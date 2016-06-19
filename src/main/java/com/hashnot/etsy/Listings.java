@@ -59,9 +59,9 @@ public interface Listings {
     ) throws IOException;
 
     @GET
-    @Path("{listingId}.json")
+    @Path("{listing_id}.json")
     Response<Listing> getListing(
-            @PathParam("listingId") Iterable<Long> listingId,
+            @PathParam("listing_id") Iterable<Long> listingId,
 
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset,
@@ -71,10 +71,10 @@ public interface Listings {
     ) throws IOException;
 
     @PUT
-    @Path("{listingId}")
+    @Path("{listing_id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     Response<Listing> updateListing(
-            @PathParam("listingId") long listingId,
+            @PathParam("listing_id") long listingId,
             @QueryParam("quantity") Integer quantity,
             @QueryParam("title") String title,
             @QueryParam("description") String description,
