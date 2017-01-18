@@ -28,7 +28,7 @@ public class PaymentsService extends AbstractEtsyService implements IPaymentsSer
     public Observable<Response<Payment>> findPayment(
             Iterable<Long> paymentId
     ) {
-        return call(limit -> payments.findPayment(paymentId));
+        return call(offset -> payments.findPayment(paymentId));
     }
 
     /**
@@ -38,7 +38,7 @@ public class PaymentsService extends AbstractEtsyService implements IPaymentsSer
     public Observable<Response<Payment>> findPayment(
             long paymentId
     ) {
-        return call(limit -> payments.findPayment(singleton(paymentId)));
+        return call(offset -> payments.findPayment(singleton(paymentId)));
     }
 
     /**

@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Rafał Krupiński
@@ -19,10 +18,12 @@ public interface Transactions {
      * Retrieves a set of Transaction objects associated to a Listing.
      */
     @GET
-    @Path("{transaction_id}")
+    @Path("/{transaction_id}")
     Response<Transaction> getTransaction(
-            @PathParam("transaction_id") List<Long> transactionId,
-            @QueryParam("includes") List<String> includes,
+            @PathParam("transaction_id") long transactionId,
+
+            @QueryParam("includes") Iterable<String> includes,
+            @QueryParam("fields") Iterable<String> fields,
             @QueryParam("limit") Integer limit,
             @QueryParam("offset") Integer offset
     ) throws IOException;
