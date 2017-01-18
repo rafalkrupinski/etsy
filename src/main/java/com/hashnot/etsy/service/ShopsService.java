@@ -6,11 +6,11 @@ import com.hashnot.etsy.dto.Receipt;
 import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.fin.LedgerEntry;
 import com.hashnot.etsy.dto.fin.Payment;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
 
 import java.time.Instant;
 import java.util.Collection;
-import java.util.concurrent.Executor;
 
 /**
  * @author Rafał Krupiński
@@ -18,7 +18,7 @@ import java.util.concurrent.Executor;
 public class ShopsService extends AbstractEtsyService implements IShopsService {
     private Shops shops;
 
-    public ShopsService(Executor executor, Shops shops) {
+    public ShopsService(Executor2 executor, Shops shops) {
         super(executor);
         this.shops = shops;
     }

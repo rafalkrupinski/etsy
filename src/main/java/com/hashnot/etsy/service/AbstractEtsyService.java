@@ -2,23 +2,22 @@ package com.hashnot.etsy.service;
 
 import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.dict.DictionaryResponse;
-import com.hashnot.u.async.Async;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
 import rx.Observer;
 import rx.subjects.ReplaySubject;
 
 import java.time.Instant;
-import java.util.concurrent.Executor;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
  * @author Rafał Krupiński
  */
-class AbstractEtsyService extends Async {
-    private Executor executor;
+class AbstractEtsyService {
+    private Executor2 executor;
 
-    public AbstractEtsyService(Executor executor) {
+    public AbstractEtsyService(Executor2 executor) {
         this.executor = executor;
     }
 
@@ -28,17 +27,17 @@ class AbstractEtsyService extends Async {
 
     protected <T> Observable<Response<T>> call(ThrowingFunction<Integer, Response<T>> method) {
         ReplaySubject<Response<T>> result = ReplaySubject.create();
-        Async.call(() -> method.apply(0), executor, new ResponseHandler<>(executor, method, result));
+        executor.accept(() -> method.apply(0)).whenComplete(new ResponseHandler<T>(executor, method, result));
         return result;
     }
 
     private static class ResponseHandler<T> implements BiConsumer<Response<T>, Throwable> {
-        private Executor executor;
+        private Executor2 executor;
         private ThrowingFunction<Integer, Response<T>> method;
         private Observer<Response<T>> observer;
         private int count = 0;
 
-        private ResponseHandler(Executor executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer) {
+        private ResponseHandler(Executor2 executor, ThrowingFunction<Integer, Response<T>> method, Observer<Response<T>> observer) {
             this.executor = executor;
             this.method = method;
             this.observer = observer;
@@ -53,7 +52,7 @@ class AbstractEtsyService extends Async {
                     count += result.getResults().size();
 
                     if (result.getCount() > count) {
-                        Async.call(() -> method.apply(count), executor, this);
+                        executor.accept(() -> method.apply(count)).whenComplete(this);
                         observer.onNext(result);
                     } else {
                         observer.onNext(result);
@@ -76,7 +75,7 @@ class AbstractEtsyService extends Async {
 
     protected <T> Observable<DictionaryResponse<T>> callDict(ThrowingFunction<Integer, DictionaryResponse<T>> method) {
         ReplaySubject<DictionaryResponse<T>> result = ReplaySubject.create();
-        Async.call(() -> method.apply(0), executor, new DictionaryResponseHandler<>(result));
+        executor.accept(() -> method.apply(0)).whenComplete(new DictionaryResponseHandler<>(result));
         return result;
     }
 

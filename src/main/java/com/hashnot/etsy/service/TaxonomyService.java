@@ -3,9 +3,8 @@ package com.hashnot.etsy.service;
 import com.hashnot.etsy.Taxonomy;
 import com.hashnot.etsy.dto.Category;
 import com.hashnot.etsy.dto.Response;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
-
-import java.util.concurrent.Executor;
 
 /**
  * @author Rafał Krupiński
@@ -13,7 +12,7 @@ import java.util.concurrent.Executor;
 public class TaxonomyService extends AbstractEtsyService implements ITaxonomyService {
     private Taxonomy taxonomy;
 
-    public TaxonomyService(Taxonomy taxonomy, Executor executor) {
+    public TaxonomyService(Taxonomy taxonomy, Executor2 executor) {
         super(executor);
         this.taxonomy = taxonomy;
     }

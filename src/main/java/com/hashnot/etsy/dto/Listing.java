@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * A class representing a single listing in Etsy.
  */
-public class Listing {
+public class Listing extends EtsyObject {
     /**
      * states available for querying
      */

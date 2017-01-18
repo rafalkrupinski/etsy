@@ -59,7 +59,8 @@ public interface Listings {
     ) throws IOException;
 
     @GET
-    @Path("{listing_id}.json")
+    @Path("{listing_id}")
+    @Produces("application/json")
     Response<Listing> getListing(
             @PathParam("listing_id") Iterable<Long> listingId,
 
@@ -67,7 +68,8 @@ public interface Listings {
             @QueryParam("offset") Integer offset,
 
             @QueryParam("includes") Iterable<String> includes,
-            @QueryParam("fields") Iterable<String> fields
+            @QueryParam("fields") Iterable<String> fields,
+            @QueryParam("api_key")String apiKey
     ) throws IOException;
 
     @PUT

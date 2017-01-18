@@ -10,13 +10,13 @@ import com.hashnot.etsy.dto.dict.DictionaryResponse;
 import com.hashnot.etsy.dto.fin.BillCharge;
 import com.hashnot.etsy.dto.fin.BillPayment;
 import com.hashnot.etsy.dto.fin.BillingOverview;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
-import java.util.concurrent.Executor;
 
 /**
  * @author Rafał Krupiński
@@ -25,7 +25,7 @@ public class UsersService extends AbstractEtsyService implements IUsersService {
 
     private Users users;
 
-    public UsersService(Users users, Executor executor) {
+    public UsersService(Users users, Executor2 executor) {
         super(executor);
         this.users = users;
     }

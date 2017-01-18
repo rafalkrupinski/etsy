@@ -4,10 +4,10 @@ import com.hashnot.etsy.Receipts;
 import com.hashnot.etsy.dto.Receipt;
 import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.Transaction;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
 
 import java.util.Collection;
-import java.util.concurrent.Executor;
 
 /**
  * @author Rafał Krupiński
@@ -15,7 +15,7 @@ import java.util.concurrent.Executor;
 public class ReceiptsService extends AbstractEtsyService implements IReceiptsService {
     final private Receipts receipts;
 
-    public ReceiptsService(Receipts receipts, Executor executor) {
+    public ReceiptsService(Receipts receipts, Executor2 executor) {
         super(executor);
         this.receipts = receipts;
     }

@@ -5,9 +5,8 @@ import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.fin.Payment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustment;
 import com.hashnot.etsy.dto.fin.PaymentAdjustmentItem;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
-
-import java.util.concurrent.Executor;
 
 import static java.util.Collections.singleton;
 
@@ -17,7 +16,7 @@ import static java.util.Collections.singleton;
 public class PaymentsService extends AbstractEtsyService implements IPaymentsService {
     private final Payments payments;
 
-    public PaymentsService(Payments payments, Executor executor) {
+    public PaymentsService(Payments payments, Executor2 executor) {
         super(executor);
         this.payments = payments;
     }

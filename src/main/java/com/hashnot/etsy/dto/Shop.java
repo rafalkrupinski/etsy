@@ -1,5 +1,6 @@
 package com.hashnot.etsy.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.hashnot.etsy.jackson.UnixTimestampDeserializer;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * @author Rafał Krupiński
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Shop {
     @JsonProperty("shop_id")
     private long shopId;

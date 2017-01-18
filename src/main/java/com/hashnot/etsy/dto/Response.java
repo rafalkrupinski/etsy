@@ -17,8 +17,13 @@ public class Response<T> {
     @JsonProperty
     private String type;
 
-    @JsonProperty("pagination")
+    @JsonProperty
     private Pagination pagination;
+
+/*
+    @JsonProperty
+    private Map<String, Object> params;
+*/
 
     public int getCount() {
         return count;

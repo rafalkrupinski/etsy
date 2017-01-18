@@ -51,6 +51,9 @@ public interface Shops {
             @QueryParam("fields") Collection<String> fields
     ) throws IOException;
 
+    /**
+     * <a href='https://www.etsy.com/developers/documentation/reference/receipt#method_findallshopreceipts'>findAllShopReceipts</a>
+     */
     @GET
     @Path("/shops/{shop_id}/receipts")
     Response<Receipt> findAllShopReceipts(

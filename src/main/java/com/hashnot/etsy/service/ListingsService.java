@@ -5,11 +5,10 @@ import com.hashnot.etsy.dto.Listing;
 import com.hashnot.etsy.dto.ListingImage;
 import com.hashnot.etsy.dto.Response;
 import com.hashnot.etsy.dto.Transaction;
+import com.hashnot.u.async.executor.Executor2;
 import rx.Observable;
 
 import java.math.BigDecimal;
-
-import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
 
 /**
@@ -18,14 +17,14 @@ import java.util.stream.Collectors;
 public class ListingsService extends AbstractEtsyService implements IListingsService {
     final private Listings listings;
 
-    public ListingsService(Listings listings, Executor executor) {
+    public ListingsService(Listings listings, Executor2 executor) {
         super(executor);
         this.listings = listings;
     }
 
     @Override
     public Observable<Response<Listing>> getListing(Iterable<Long> listingIds, Iterable<String> includes, Iterable<String> fields) {
-        return call(offset -> listings.getListing(listingIds, null, offset, includes, fields));
+        return call(offset -> listings.getListing(listingIds, null, offset, includes, fields, null));
     }
 
     @Override
