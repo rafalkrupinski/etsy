@@ -3,8 +3,6 @@ package com.hashnot.etsy.dto.dict;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hashnot.etsy.dto.Pagination;
 
-import java.util.List;
-
 /**
  * @author Rafał Krupiński
  */
@@ -20,4 +18,8 @@ public class DictionaryResponse<T> {
 
     @JsonProperty("pagination")
     private Pagination pagination;
+	
+	public T getResult() {
+		return results;
+	}
 }
